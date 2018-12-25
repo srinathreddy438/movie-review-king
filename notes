@@ -1,0 +1,84 @@
+setup
+_____
+
+npm install -g ionic
+ionic start ionic4-angular-news tabs --type=angular //it will create basic bolder structure
+cd ionic4-angular-news/
+ionic serve                                 //run application
+ionic g page news --dry-run                 //for checking what files will create once we run this command
+ionic g page news                           //will create news page
+ionic generate service api/news             //it will create service 
+npm install -g cordova                      
+ionic cordova build android                 //build application
+
+after building complete it will create one platforms folder, it will have androind or ios folders
+this android folder we can open in android studio and we can run then it will crete an app in mobile 
+
+
+https://play.google.com/apps/publish/?account=8060470727509950304#
+
+
+build.gradle(app) defaultConfig applicationId 'com.svappzone.reviewking' 
+
+ss will open search files in android studio
+strings.xml open it and give app name
+<string name="app_name">Review King</string>
+this app name will appear in mobile after installing app
+
+goto ss then androidManifest.xml
+change icon android:icon="@mipmap/icon"
+from below path getting icon
+app/res/minmap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+publish an app
+_____________
+https://www.youtube.com/watch?v=1u5mA9J5FTg
+
+

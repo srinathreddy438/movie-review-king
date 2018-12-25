@@ -1,10 +1,42 @@
-<ion-header>
-  <ion-toolbar>
+<!-- <ion-header>
+  <ion-toolbar transparent>
     <ion-title>Home</ion-title>
   </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
+<ion-content class="card-background-page">
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+  <ion-card routerLink="/movies">
+    <img src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png" />
+    <div class="card-title">Reviews</div>
+    <div class="card-subtitle">Show All Reviews</div>
+  </ion-card>
+
+  <ion-card routerLink="/add-review">
+    <img src="https://ionicframework.com/dist/preview-app/www/assets/img/card-amsterdam.png" />
+    <div class="card-title">Add Review</div>
+    <div class="card-subtitle">Create New Review</div>
+  </ion-card>
+
+  <ion-card>
+    <img src="https://ionicframework.com/dist/preview-app/www/assets/img/card-sf.png" />
+    <div class="card-title">San Francisco</div>
+    <div class="card-subtitle">72 Listings</div>
+  </ion-card>
+
+  <ion-card>
+    <img src="https://ionicframework.com/dist/preview-app/www/assets/img/card-madison.png" />
+    <div class="card-title">Madison</div>
+    <div class="card-subtitle">28 Listings</div>
+  </ion-card>
+
 </ion-content>

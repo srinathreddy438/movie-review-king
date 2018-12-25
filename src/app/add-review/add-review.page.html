@@ -1,0 +1,42 @@
+<!-- <ion-header>
+  <ion-toolbar color="secondary">
+    <ion-icon routerLink="/home-page" class="home-icon" [name]="'home'"></ion-icon>
+    <ion-title>add-review</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+    <ion-toolbar color="secondary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Add Review
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+
+  <ion-list no-lines>
+
+    <ion-item>
+      <ion-label floating>Title</ion-label>
+      <ion-input [(ngModel)]="review.title" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Review</ion-label>
+      <ion-textarea [(ngModel)]="review.description"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-range min="0" max="100" pin="true" [(ngModel)]="review.rating">
+        <ion-icon range-left name="sad"></ion-icon>
+        <ion-icon range-right name="happy"></ion-icon>
+      </ion-range>
+    </ion-item>
+
+  </ion-list>
+
+  <button ion-button full color="secondary" (click)="save()">Save</button>
+</ion-content>
