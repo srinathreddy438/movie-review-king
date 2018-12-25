@@ -13,15 +13,11 @@ export class MoviesService {
     constructor(public http: Http) {
         this.data = null;
     }
-
     getMovies() {
-
         /*if (this.data) {
             return Promise.resolve(this.data);
         }*/
-
         return new Promise(resolve => {
-
             this.http.get(this.url)
                 // .map(res => res.json())
                 .subscribe(data => {
@@ -32,24 +28,36 @@ export class MoviesService {
 
     }
 
-    createMovie(movie) {
+    getMovie(id) {
+        return new Promise(resolve => {
+            this.http.get(this.url + '/' + id)
+                .subscribe(data => {
+                    this.data = data;
+                    resolve(this.data);
+                });
+        });
+    }
 
+    createMovie(movie) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
         this.http.post(this.url, JSON.stringify(movie), { headers: headers })
             .subscribe(res => {
-                console.log(res.json());
             });
+    }
 
+    updateMovie(movie) {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        const url = this.url + '/' + movie._id;
+        this.http.put(url, JSON.stringify(movie), { headers: headers })
+            .subscribe(res => {
+            });
     }
 
     deleteMovie(id) {
-
         this.http.delete('http://localhost:9000/api/movies/' + id).subscribe((res) => {
-            console.log(res.json());
         });
-
     }
 
 }

@@ -16,11 +16,12 @@ class MovieModel {
 }
 
 @Component({
-  selector: 'app-add-review',
-  templateUrl: './add-review.page.html',
-  styleUrls: ['./add-review.page.scss'],
+  selector: 'app-add-movie',
+  templateUrl: './add-movie.page.html',
+  styleUrls: ['./add-movie.page.scss'],
 })
-export class AddReviewPage implements OnInit {
+export class AddMoviePage implements OnInit {
+
   // movie: MovieModel;
   movie: any;
   constructor(private activatedRoute: ActivatedRoute, public movieService: MoviesService) {
@@ -31,7 +32,9 @@ export class AddReviewPage implements OnInit {
     this.activatedRoute.paramMap.subscribe(
       params => {
         const id = params.get('id');
-        this.getReviewList(id);
+        if (id) {
+          this.getReviewList(id);
+        }
       }
     );
   }
@@ -41,4 +44,13 @@ export class AddReviewPage implements OnInit {
       this.movie = data.json();
     });
   }
+
+  save(): void {
+    if (this.movie && this.movie._id) {
+      this.movieService.updateMovie(this.movie);
+    } else {
+      this.movieService.createMovie(this.movie);
+    }
+  }
+
 }

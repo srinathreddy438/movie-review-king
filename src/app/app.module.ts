@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { MomentModule } from 'ngx-moment';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -26,6 +27,7 @@ import { MoviesService } from './movies-service';
   entryComponents: [],
   imports: [
     BrowserModule,
+    MomentModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,

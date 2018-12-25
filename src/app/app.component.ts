@@ -31,8 +31,8 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'Add Review',
-      url: '/add-review',
+      title: 'Add / Update Movie',
+      url: '/add-movie',
       icon: 'create'
     },
     {

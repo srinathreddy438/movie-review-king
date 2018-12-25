@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start" routerLink="/movies">
+      <ion-icon name="arrow-back" class="back-icon"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      Add / Update Movie
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list no-lines>
+
+    <ion-item>
+      <ion-label position='stacked' color="secondary">Title</ion-label>
+      <ion-input [(ngModel)]="movie.title" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position='stacked' color="secondary">Description</ion-label>
+      <ion-textarea [(ngModel)]="movie.description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position='stacked' color="secondary">Language</ion-label>
+      <ion-select cancelText="Nah" okText="Okay!" [(ngModel)]="movie.language">
+        <ion-select-option value="Telugu">Telugu</ion-select-option>
+        <ion-select-option value="English">English</ion-select-option>
+        <ion-select-option value="Hindi">Hindi</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position='stacked' color="secondary">Releasing Date(MM/DD/YYYY)</ion-label>
+      <ion-datetime [(ngModel)]="movie.releasingDate" display-format="MM/DD/YYYY" min="2018-12-12" max="2019-12-09"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label position='stacked' color="secondary">Certificate</ion-label>
+      <ion-select [(ngModel)]="movie.certificate">
+        <ion-select-option value="U">U (Unrestricted)</ion-select-option>
+        <ion-select-option value="U/A">U/A (Parental Guidance)</ion-select-option>
+        <ion-select-option value="A">A (Restricted to adults)</ion-select-option>
+        <ion-select-option value="S">S (Restricted to any special persons)</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position='stacked' color="secondary">Image</ion-label>
+      <ion-input [(ngModel)]="movie.image"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position='stacked' color="secondary">Video</ion-label>
+      <ion-input [(ngModel)]="movie.video"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <ion-button color="secondary" expand="block" (click)="save()">Save</ion-button>
+</ion-content>
