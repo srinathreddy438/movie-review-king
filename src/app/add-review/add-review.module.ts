@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { AddReviewPage } from './add-review.page';
 
+import { SafePipePipeModule } from '../pipes/safe-pipe/safe-pipe.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    SafePipePipeModule,
     RouterModule.forChild(routes)
   ],
   declarations: [AddReviewPage]

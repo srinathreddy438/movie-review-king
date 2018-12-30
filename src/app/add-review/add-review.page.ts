@@ -39,6 +39,9 @@ export class AddReviewPage implements OnInit {
   getReviewList(id) {
     this.movieService.getMovie(id).then((data: Response) => {
       this.movie = data.json();
+      if (this.movie.video) {
+        this.movie.video = 'https://www.youtube.com/embed/' + this.movie.video;
+      }
     });
   }
 }

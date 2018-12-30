@@ -14,7 +14,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
+<ion-content>
   <ion-card *ngFor="let movie of movies">
       <img *ngIf="!movie.image" src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png" />
       <img *ngIf="movie.image" src="{{movie.image}}" />

@@ -7,17 +7,22 @@
 <ion-header>
   <ion-toolbar color="secondary">
     <ion-buttons slot="start" routerLink="/movies">
-        <ion-icon name="arrow-back" class="back-icon"></ion-icon>
+      <ion-icon name="arrow-back" class="back-icon"></ion-icon>
     </ion-buttons>
     <ion-title>
       Add Review
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
+<ion-content>
   <ion-card>
-    <img *ngIf="!movie.image" src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png" />
-    <img *ngIf="movie.image" src="{{movie.image}}" />
+    <!-- <a href="https://youtu.be/1-2J7avI9W8">
+      <img *ngIf="!movie.image" src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png" />
+      <img *ngIf="movie.image" src="{{movie.image}}" />
+    </a> -->
+    <iframe *ngIf="movie.video" width="100%" height="400" [src]="movie.video | safePipe">
+    </iframe>
+    <img *ngIf="!movie.video && movie.image" src="{{movie.image}}" />
     {{movie?.certificate}}
     <ion-card-title>
       {{movie?.title}}
@@ -26,7 +31,14 @@
       {{movie?.language}}
     </ion-card-subtitle>
     <ion-card-subtitle>
-        {{movie?.description}}
-      </ion-card-subtitle>
+      {{movie?.description}}
+    </ion-card-subtitle>
   </ion-card>
 </ion-content>
+<ion-footer>
+  <ion-toolbar color="danger">
+    <ion-title>
+      Rate The Movie
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

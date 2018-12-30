@@ -13,6 +13,7 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MoviesService } from './movies-service';
+import { SafePipePipeModule } from './pipes/safe-pipe/safe-pipe.module';
 
 // These are all imports required for Pro Client with Monitoring & Deploy,
 // feel free to merge into existing imports above.
@@ -31,8 +32,10 @@ import { MoviesService } from './movies-service';
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    SafePipePipeModule
   ],
+  exports: [],
   providers: [
     StatusBar,
     SplashScreen,
