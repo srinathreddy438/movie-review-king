@@ -12,8 +12,11 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MoviesService } from './movies-service';
+import { MoviesService } from './services/movies-service';
 import { SafePipePipeModule } from './pipes/safe-pipe/safe-pipe.module';
+
+import { OnlyLoggedInUsersGuard } from './guards/only-logged-in-users-guard';
+import { AccountsService } from './services/account-service';
 
 // These are all imports required for Pro Client with Monitoring & Deploy,
 // feel free to merge into existing imports above.
@@ -40,7 +43,9 @@ import { SafePipePipeModule } from './pipes/safe-pipe/safe-pipe.module';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    MoviesService
+    MoviesService,
+    AccountsService,
+    OnlyLoggedInUsersGuard
   ],
   bootstrap: [AppComponent]
 })

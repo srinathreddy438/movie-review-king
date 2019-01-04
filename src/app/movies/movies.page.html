@@ -26,7 +26,7 @@
       {{movie.language}}
     </ion-card-subtitle>
     <ion-button color="secondary" (click)="updateMovieDetails(movie)">Update</ion-button>
-    <ion-button color="secondary" (click)="goToReviewPage(movie)">View</ion-button>
+    <ion-button *ngIf="isAdmin" color="secondary" (click)="goToReviewPage(movie)">View</ion-button>
   </ion-card>
 
 </ion-content>

@@ -1,0 +1,17 @@
+<ion-content class="rating-popover-page">
+  <h4>Your Rating?</h4>
+  <div class="overall-rating">
+    <div class="number">{{ratingSelected}}</div>
+    <ion-icon [ngClass]="ratingSelected ? 'selected' : ''" class="rating-icon" name="star"></ion-icon>
+  </div>
+  <div class="rating-conatiner">
+    <div *ngFor="let rating of ratingArr; let i = index;">
+      <ion-icon [ngClass]="(rating?.selected) ? 'selected' : ''" class="rating-icon" (click)="giveRating(i)" name="star"></ion-icon>
+    </div>
+  </div>
+  <ion-textarea class="review-desc" placeholder="Write your review (Optional)">
+  </ion-textarea>
+  <div class="submit-container">
+    <div class="submit">SUBMIT</div>
+  </div>
+</ion-content>

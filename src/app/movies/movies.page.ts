@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviesService } from '../movies-service';
+import { MoviesService } from '../services/movies-service';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AccountsService } from '../services/account-service';
 
 
 class MovieModel {
@@ -25,12 +26,20 @@ class MovieModel {
 export class MoviesPage implements OnInit {
   // movies: Array<MovieModel>;
   movies: any;
+  isAdmin: boolean;
 
-  constructor(public Service: MoviesService, private router: Router) { }
+  constructor(
+    public Service: MoviesService,
+    private router: Router,
+    public accountsService: AccountsService) {
+    }
 
   ngOnInit() {
     this.movies = [];
     this.getReviewList();
+    if (this.accountsService && this.accountsService.getLoginInfo() && this.accountsService.getLoginInfo().userName === 'srinath440') {
+      this.isAdmin = true;
+    }
   }
 
   getReviewList() {

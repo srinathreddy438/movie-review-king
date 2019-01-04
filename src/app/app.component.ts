@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-
 import { Platform, ActionSheetController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AccountsService } from './services/account-service';
 
 
 @Component({
@@ -14,11 +14,11 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public actionsheetCtrl: ActionSheetController
+    public actionsheetCtrl: ActionSheetController,
+    public accountsService: AccountsService
   ) {
     this.initializeApp();
   }
-
   public appPages = [
     {
       title: 'Home',
@@ -31,14 +31,17 @@ export class AppComponent {
       icon: 'list'
     },
     {
-      title: 'Add / Update Movie',
-      url: '/add-movie',
-      icon: 'create'
-    },
-    {
       title: 'Login',
       url: '/login',
       icon: 'person'
+    }
+  ];
+
+  public adminPages = [
+    {
+      title: 'Add / Update Movie',
+      url: '/add-movie',
+      icon: 'create'
     }
   ];
 
@@ -47,5 +50,9 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    if (this.accountsService && this.accountsService.getLoginInfo() && this.accountsService.getLoginInfo().userName === 'srinath440') {
+      this.appPages = this.appPages.concat(this.adminPages);
+    }
   }
 }

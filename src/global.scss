@@ -3,9 +3,29 @@
 @import '~@ionic/angular/css/normalize.css';
 @import '~@ionic/angular/css/structure.css';
 @import '~@ionic/angular/css/typography.css';
-
 @import '~@ionic/angular/css/padding.css';
 @import '~@ionic/angular/css/float-elements.css';
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+.back-icon {
+    font-size: 24px;
+    padding: 2px;
+}
+
+.rating-popover {
+    .popover-content {
+        width: 100% !important;
+        left: 0px !important;
+        right: 0px;
+        bottom: 0px;
+        top: initial !important;
+        background: rgba(255, 255, 255, 1) !important;
+        text-align: center;
+        border-radius: inherit !important;
+        .popover-viewport {
+            max-height: 100%;
+            height: 100%;
+        }
+    }
+}

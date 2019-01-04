@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { AddReviewPage } from './add-review.page';
+import { ReviewFormPagePopOver } from './review-form/review-form.page';
 
 import { SafePipePipeModule } from '../pipes/safe-pipe/safe-pipe.module';
 
@@ -24,6 +25,12 @@ const routes: Routes = [
     SafePipePipeModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AddReviewPage]
+  declarations: [
+    AddReviewPage,
+    ReviewFormPagePopOver
+  ],
+  entryComponents: [
+    ReviewFormPagePopOver
+  ]
 })
 export class AddReviewPageModule {}

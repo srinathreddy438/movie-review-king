@@ -1,0 +1,43 @@
+.rating-popover-page {
+    .selected {
+        color: gold !important;
+    }
+    .rating-conatiner {
+        display: flex;
+        justify-content: center;
+        .rating-icon {
+            font-size: 29px;
+            color: #bfb8b8;
+        }
+    }
+    .overall-rating {
+        position: relative;
+        .rating-icon {
+            font-size: 90px;
+            color: #bfb8b8;
+        }
+        .number {
+            position: absolute;
+            top: 37px;
+            left: 0px;
+            right: 0px;
+            z-index: 1;
+            font-size: 20px;
+            color: white;
+        }
+    }
+    .review-desc {
+        border: 1px solid green;
+        width: 95%;
+        margin: 0px auto;
+        text-align: left;
+        padding: 0px 5px;
+    }
+    .submit-container {
+        display: flex;
+        flex-direction: row-reverse;
+        padding: 15px 10px;
+        font-size: 13px;
+        color: #bfb8b8;
+    }
+}

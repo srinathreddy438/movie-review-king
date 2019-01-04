@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" *ngIf="userSessionExists">
         <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
@@ -15,8 +15,8 @@
   <ion-list>
     <ion-item color="secondary">
       <ion-label position="stacked" color="primary">User Name</ion-label>
-      <ion-input border-bottom="primary"></ion-input>
+      <ion-input autofocus [(ngModel)]="account.userName" border-bottom="primary"></ion-input>
     </ion-item>
-  </ion-list>
-  <ion-button color="primary" expand="block">Sign In</ion-button>
+  </ion-list>    
+  <ion-button color="primary" expand="block" (click)="login()">Sign In</ion-button>
 </ion-content>
