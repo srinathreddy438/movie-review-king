@@ -6,8 +6,8 @@
 </ion-header> -->
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+    <ion-buttons slot="start" routerLink="">
+      <ion-icon name="arrow-back" class="back-icon"></ion-icon>
     </ion-buttons>
     <ion-title>
       Movies
@@ -16,8 +16,8 @@
 </ion-header>
 <ion-content>
   <ion-card *ngFor="let movie of movies">
-      <img *ngIf="!movie.image" src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png" />
-      <img *ngIf="movie.image" src="{{movie.image}}" />
+    <img *ngIf="!movie.image" src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png" />
+    <img *ngIf="movie.image" src="{{movie.image}}" />
     {{movie.certificate}}
     <ion-card-title>
       {{movie.title}}

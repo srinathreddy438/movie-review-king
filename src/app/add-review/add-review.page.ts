@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviesService } from '../services/movies-service';
 import { ActivatedRoute } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { ReviewFormPagePopOver } from './review-form/review-form.page';
+import { MoviesService } from '../services/movies-service';
+import { AccountsService } from '../services/account-service';
+import { ReviewsService } from './../services/review-service';
 
 class MovieModel {
   constructor(
@@ -25,44 +27,102 @@ class MovieModel {
 export class AddReviewPage implements OnInit {
   // movie: MovieModel;
   movie: any;
+  userName: string;
+  ratingList: any;
+  ratingStarsList: Array<Object>;
+  routerId: String;
   constructor(
     private activatedRoute: ActivatedRoute,
     public movieService: MoviesService,
+    public accountsService: AccountsService,
+    public reviewsService: ReviewsService,
     public popoverController: PopoverController) {
     this.movie = new MovieModel();
   }
 
   ngOnInit() {
+    this.ratingStarsList = [
+      {
+        rating: 1,
+        selected: false
+      },
+      {
+        rating: 2,
+        selected: false
+      }, {
+        rating: 3,
+        selected: false
+      }, {
+        rating: 4,
+        selected: false
+      }, {
+        rating: 5,
+        selected: false
+      }, {
+        rating: 6,
+        selected: false
+      }, {
+        rating: 7,
+        selected: false
+      },
+      {
+        rating: 8,
+        selected: false
+      }, {
+        rating: 9,
+        selected: false
+      }, {
+        rating: 10,
+        selected: false
+      }
+    ];
+    this.userName = this.accountsService && this.accountsService.getLoginInfo() && this.accountsService.getLoginInfo().userName;
     this.activatedRoute.paramMap.subscribe(
       params => {
         const id = params.get('id');
+        this.routerId = id;
+        this.getMovieDetails(id);
         this.getReviewList(id);
       }
     );
   }
 
-  async presentPopover(ev: any) {
+  async presentPopover(ev: any, existRatingObj) {
+    const existRating = existRatingObj ? { ...existRatingObj } : '';
     const popover = await this.popoverController.create({
       component: ReviewFormPagePopOver,
       event: ev,
       translucent: true,
       cssClass: 'rating-popover',
       animated: true,
-      componentProps: {name: 'sri'}
+      componentProps: {reviewModel: (existRating || {movieId: this.movie._id, userName: this.userName})}
     }
     );
     popover.onDidDismiss().then(data => {
-      console.log(data);
+      /*if (data && data.data) {
+        this.ratingList = data.data;
+      }*/
+      this.getReviewList(this.routerId);
     });
     return await popover.present();
   }
 
-  getReviewList(id) {
+  getMovieDetails(id) {
     this.movieService.getMovie(id).then((data: Response) => {
       this.movie = data.json();
       if (this.movie.video) {
         this.movie.video = 'https://www.youtube.com/embed/' + this.movie.video;
       }
     });
+  }
+
+  getReviewList(id) {
+    this.reviewsService.getCurrentMovieReviewsList(id).then((data: Response) => {
+      this.ratingList = data.json();
+    });
+  }
+
+  updateRating(ev, ratingObj) {
+    this.presentPopover(ev, ratingObj);
   }
 }

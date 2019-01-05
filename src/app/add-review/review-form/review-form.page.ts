@@ -1,6 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
+import { ReviewsService } from './../../services/review-service';
+import * as moment_ from 'moment';
+export const moment = moment_['default'];
 
+
+class ReviewModel {
+  constructor(
+    public movieId?: String,
+    public userName?: String,
+    public description?: String,
+    public rating?: Number,
+    public ratingGivenDate?: Date,
+    public _id?: any
+  ) {
+    this.rating = 0;
+  }
+}
 @Component({
   selector: 'app-review-form',
   templateUrl: './review-form.page.html',
@@ -9,11 +25,15 @@ import { PopoverController } from '@ionic/angular';
 export class ReviewFormPagePopOver implements OnInit {
 
   ratingArr: Array<Object>;
-  ratingSelected: number;
-  constructor(public viewCtrl: PopoverController) { }
+  reviewModel: ReviewModel;
+  constructor(
+    public viewCtrl: PopoverController,
+    public reviewsService: ReviewsService
+  ) {
+    this.reviewModel = new ReviewModel();
+  }
 
   ngOnInit() {
-    this.ratingSelected = 0;
     this.initializeRating();
   }
   initializeRating() {
@@ -54,18 +74,33 @@ export class ReviewFormPagePopOver implements OnInit {
     ];
   }
   giveRating(index) {
-    this.ratingSelected = index + 1;
-    this.ratingArr.forEach((item: any) => {
-        item.selected = false;
-    });
-    this.ratingArr.forEach((item: any) => {
-      if (item.rating <= index + 1) {
-        item.selected = true;
+    this.reviewModel.rating = index + 1;
+  }
+  submitReview() {
+    if (this.reviewModel && this.reviewModel.rating) {
+      this.reviewModel.ratingGivenDate = moment().format('DD/MM/YYYY');
+      if (this.reviewModel && this.reviewModel._id) {
+        this.reviewsService.updateReview(this.reviewModel).then((reviewsObj: any) => {
+          // this.viewCtrl.dismiss(reviewsObj.json());
+          this.viewCtrl.dismiss();
+        });
+      } else {
+        this.reviewsService.createReview(this.reviewModel).then((reviewsObj: any) => {
+          // this.viewCtrl.dismiss(reviewsObj.json());
+          this.viewCtrl.dismiss();
+        });
       }
+    }
+  }
+
+  deleteReview() {
+    this.reviewsService.deleteReview(this.reviewModel).then((reviewsObj: any) => {
+      // this.viewCtrl.dismiss(reviewsObj.json());
+      this.viewCtrl.dismiss();
     });
   }
-  dismiss() {
+  /*dismiss() {
     const data = { 'foo': 'bar' };
     this.viewCtrl.dismiss(data);
-  }
+  }*/
 }

@@ -17,6 +17,7 @@ import { SafePipePipeModule } from './pipes/safe-pipe/safe-pipe.module';
 
 import { OnlyLoggedInUsersGuard } from './guards/only-logged-in-users-guard';
 import { AccountsService } from './services/account-service';
+import { ReviewsService } from './services/review-service';
 
 // These are all imports required for Pro Client with Monitoring & Deploy,
 // feel free to merge into existing imports above.
@@ -45,6 +46,7 @@ import { AccountsService } from './services/account-service';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     MoviesService,
     AccountsService,
+    ReviewsService,
     OnlyLoggedInUsersGuard
   ],
   bootstrap: [AppComponent]

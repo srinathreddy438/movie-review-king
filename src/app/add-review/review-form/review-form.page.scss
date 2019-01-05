@@ -38,6 +38,9 @@
         flex-direction: row-reverse;
         padding: 15px 10px;
         font-size: 13px;
-        color: #bfb8b8;
+        color: green;
+        .submit {
+            margin-left: 10px;
+        }
     }
 }
