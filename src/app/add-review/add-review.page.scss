@@ -1,29 +1,66 @@
-.rating-list {
-    .rating {
-        border-bottom: 1px solid lightgray;
-        padding: 10px 5px;
-        .name-edit {
-            display: flex;
-            justify-content: space-between;
-            .edit {
-                color: green;
-                font-size: 14px;
+.review-page {
+    .detail-section {
+        padding: 20px;
+        .rating-list {
+            .rating {
+                border-bottom: 1px solid lightgray;
+                padding: 10px 0px;
+                .name-edit {
+                    display: flex;
+                    justify-content: space-between;
+                    .edit {
+                        color: green;
+                        font-size: 14px;
+                    }
+                }
+                .date {
+                    margin: 5px 0px;
+                }
+                .rating-stat-list {
+                    display: flex;
+                    margin-bottom: 5px;
+                    .selected {
+                        color: gold !important;
+                    }
+                }
             }
         }
-        .date {
-            margin: 5px 0px;
+        .no-review {
+            text-align: center;
+            padding: 40px 0px;
+            color: burlywood;
         }
-        .rating-stat-list {
-            display: flex;
-            margin-bottom: 5px;
-            .selected {
-                color: gold !important;
+        .movie-detail {
+            .overall-rating {
+                // margin-bottom: 10px;
+                display: flex;
+                width: 104px;
+                background: rgba(148, 139, 128, 0.8);
+                margin-bottom: 10px;
+                color: white;
+                padding: 10px;
+                .rating-icon {
+                    font-size: 35px;
+                    color: gold;
+                    margin-right: 5px;
+                }
+                .rating {
+                    text-align: center;
+                }
+            }
+            .section1 {
+                display: flex;
+                justify-content: space-between;
+                .title {
+                    color: black;
+                    font-weight: bold;
+                    font-size: 14px;
+                }
+            }
+            .section2 {
+                padding: 10px 0px;
+                border-bottom: 1px solid lightgray;
             }
         }
     }
-}
-.no-review {
-    text-align: center;
-    padding: 40px 0px;
-    color: burlywood;
 }

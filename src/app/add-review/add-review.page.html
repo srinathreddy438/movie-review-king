@@ -10,11 +10,11 @@
       <ion-icon name="arrow-back" class="back-icon"></ion-icon>
     </ion-buttons>
     <ion-title>
-      Add Review
+      {{movie?.title}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="review-page">
   <!-- <ion-card>
     <iframe *ngIf="movie.video" width="100%" height="400" [src]="movie.video | safePipe">
     </iframe>
@@ -34,46 +34,59 @@
     <iframe *ngIf="movie?.video" width="100%" height="400" [src]="movie?.video | safePipe">
     </iframe>
     <img *ngIf="!movie?.video && movie?.image" src="{{movie?.image}}" />
-    {{movie?.certificate}}
+    <!-- {{movie?.certificate}} -->
   </div>
-  <div class="movie-details">
-    <div>
-      {{movie?.title}}
-    </div>
-    <div>
-      {{movie?.language}}
-    </div>
-    <div>
-      {{movie?.description}}
-    </div>
-  </div>
-  <div *ngIf="!ratingList?.length" class="no-review" color="primary">
-    No Reviews added, Add your review
-  </div>
-  <div class="rating-list">
-    <div class="rating" *ngFor="let rating of ratingList">
-      <div class="name-edit">
-        <div>
-          {{rating?.userName}}
-          <ion-badge color="medium" *ngIf="userName === (rating?.userName)">YOU</ion-badge>
+  <div class="detail-section">
+    <div class="movie-detail">
+      <div class="overall-rating" *ngIf="ratingList?.length">
+        <ion-icon class="rating-icon" name="star"></ion-icon>
+        <div class="rating">
+          <div>{{(overalRating / ratingList?.length) | number: '1.0-1'}}/10</div>
+          <div>{{ratingList?.length}}</div>
         </div>
-        <div class="edit" (click)="updateRating($event, rating)" *ngIf="userName === (rating?.userName)">EDIT</div>
       </div>
-      <div>
-        <div class="date">{{rating?.ratingGivenDate | date: 'dd/MM/yyyy'}}</div>
-        <div class="rating-stat-list">
-          <div *ngFor="let rate of ratingStarsList; let i = index;">
-            <ion-icon [ngClass]="((rate?.rating) <= (rating?.rating)) ? 'selected' : ''" class="rating-icon" name="star"></ion-icon>
-          </div>
+      <div class="section1">
+        <div>
+          <div class="title">{{movie.title}}</div>
+          <div>{{movie.language}}</div>
         </div>
-        <div>{{rating?.description}}</div>
+        <div>
+          <div>{{movie?.certificate}}</div>
+          <div>{{movie?.releasingDate | date: 'dd/MM/yyyy'}}</div>
+        </div>
+      </div>
+      <div class="section2">
+        <div>{{movie?.description}}</div>
+      </div>
+    </div>
+    <div *ngIf="!ratingList?.length" class="no-review" color="primary">
+      No Reviews added, Add your review
+    </div>
+    <div class="rating-list">
+      <div class="rating" *ngFor="let rating of ratingList">
+        <div class="name-edit">
+          <div>
+            {{rating?.userName}}
+            <ion-badge color="medium" *ngIf="userName === (rating?.userName)">YOU</ion-badge>
+          </div>
+          <div class="edit" (click)="updateRating($event, rating)" *ngIf="userName === (rating?.userName)">EDIT</div>
+        </div>
+        <div>
+          <div class="date">{{rating?.ratingGivenDate | date: 'dd/MM/yyyy'}}</div>
+          <div class="rating-stat-list">
+            <div *ngFor="let rate of ratingStarsList; let i = index;">
+              <ion-icon [ngClass]="((rate?.rating) <= (rating?.rating)) ? 'selected' : ''" class="rating-icon" name="star"></ion-icon>
+            </div>
+          </div>
+          <div>{{rating?.description}}</div>
+        </div>
       </div>
     </div>
   </div>
 </ion-content>
 <ion-footer>
-  <ion-toolbar color="danger">
-    <ion-title (click)="presentPopover($event, '')">
+  <ion-toolbar *ngIf="!ratingExist" color="danger">
+    <ion-title text-center (click)="presentPopover($event, '')">
       Rate The Movie
     </ion-title>
   </ion-toolbar>

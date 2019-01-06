@@ -1,0 +1,12 @@
+.movies-page {
+    .movie-detail {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        .title {
+            color: black;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    }
+}

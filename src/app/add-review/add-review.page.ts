@@ -31,6 +31,8 @@ export class AddReviewPage implements OnInit {
   ratingList: any;
   ratingStarsList: Array<Object>;
   routerId: String;
+  overalRating: number;
+  ratingExist: boolean;
   constructor(
     private activatedRoute: ActivatedRoute,
     public movieService: MoviesService,
@@ -41,6 +43,8 @@ export class AddReviewPage implements OnInit {
   }
 
   ngOnInit() {
+    this.overalRating = 0;
+    this.ratingExist = false;
     this.ratingStarsList = [
       {
         rating: 1,
@@ -95,7 +99,7 @@ export class AddReviewPage implements OnInit {
       translucent: true,
       cssClass: 'rating-popover',
       animated: true,
-      componentProps: {reviewModel: (existRating || {movieId: this.movie._id, userName: this.userName})}
+      componentProps: { reviewModel: (existRating || { movieId: this.movie._id, userName: this.userName }) }
     }
     );
     popover.onDidDismiss().then(data => {
@@ -118,7 +122,20 @@ export class AddReviewPage implements OnInit {
 
   getReviewList(id) {
     this.reviewsService.getCurrentMovieReviewsList(id).then((data: Response) => {
+      this.ratingExist = false;
+      this.overalRating = 0;
       this.ratingList = data.json();
+      this.ratingList.forEach(element => {
+        if (element && element.rating) {
+          this.overalRating = this.overalRating + Number(element.rating);
+        }
+        if (element && element.userName &&
+          this.accountsService &&
+          this.accountsService.getLoginInfo() &&
+          (element.userName === this.accountsService.getLoginInfo().userName)) {
+            this.ratingExist = true;
+        }
+      });
     });
   }
 

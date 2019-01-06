@@ -7,8 +7,8 @@ import { Http, Headers } from '@angular/http';
 export class ReviewsService {
 
     data: any;
-    url = 'http://localhost:9000/api/reviews';
-    // url = 'https://moviesreviewapp.herokuapp.com/api/reviews';
+    // url = 'http://localhost:9000/api/reviews';
+    url = 'https://moviesreviewapp.herokuapp.com/api/reviews';
 
     constructor(public http: Http) {
         this.data = null;
