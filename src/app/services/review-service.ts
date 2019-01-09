@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 // import 'rxjs/add/operator/map';
 
 
@@ -10,7 +11,7 @@ export class ReviewsService {
     // url = 'http://localhost:9000/api/reviews';
     url = 'https://moviesreviewapp.herokuapp.com/api/reviews';
 
-    constructor(public http: Http) {
+    constructor(public http: Http, private httpCall: HttpClient) {
         this.data = null;
     }
 
@@ -27,7 +28,7 @@ export class ReviewsService {
 
     getCurrentMovieReviewsList(id) {
         return new Promise(resolve => {
-            this.http.get(this.url + '/' + id)
+            this.httpCall.get(this.url + '/' + id)
                 .subscribe(data => {
                     this.data = data;
                     resolve(this.data);

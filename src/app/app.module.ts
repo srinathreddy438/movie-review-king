@@ -18,6 +18,8 @@ import { SafePipePipeModule } from './pipes/safe-pipe/safe-pipe.module';
 import { OnlyLoggedInUsersGuard } from './guards/only-logged-in-users-guard';
 import { AccountsService } from './services/account-service';
 import { ReviewsService } from './services/review-service';
+// shared module
+import { SharedModule } from './shared/shared.module';
 
 // These are all imports required for Pro Client with Monitoring & Deploy,
 // feel free to merge into existing imports above.
@@ -37,7 +39,8 @@ import { ReviewsService } from './services/review-service';
     AppRoutingModule,
     HttpClientModule,
     HttpModule,
-    SafePipePipeModule
+    SafePipePipeModule,
+    SharedModule
   ],
   exports: [],
   providers: [

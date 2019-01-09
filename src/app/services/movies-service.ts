@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 // import 'rxjs/add/operator/map';
 
 
@@ -10,7 +11,7 @@ export class MoviesService {
     // url = 'http://localhost:9000/api/movies';
     url = 'https://moviesreviewapp.herokuapp.com/api/movies';
 
-    constructor(public http: Http) {
+    constructor(public http: Http, private httpCall: HttpClient) {
         this.data = null;
     }
     getMovies() {
@@ -18,7 +19,7 @@ export class MoviesService {
             return Promise.resolve(this.data);
         }*/
         return new Promise(resolve => {
-            this.http.get(this.url)
+            this.httpCall.get(this.url)
                 // .map(res => res.json())
                 .subscribe(data => {
                     this.data = data;
@@ -30,7 +31,7 @@ export class MoviesService {
 
     getMovie(id) {
         return new Promise(resolve => {
-            this.http.get(this.url + '/' + id)
+            this.httpCall.get(this.url + '/' + id)
                 .subscribe(data => {
                     this.data = data;
                     resolve(this.data);

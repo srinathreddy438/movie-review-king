@@ -113,7 +113,7 @@ export class AddReviewPage implements OnInit {
 
   getMovieDetails(id) {
     this.movieService.getMovie(id).then((data: Response) => {
-      this.movie = data.json();
+      this.movie = data;
       if (this.movie.video) {
         this.movie.video = 'https://www.youtube.com/embed/' + this.movie.video;
       }
@@ -124,7 +124,7 @@ export class AddReviewPage implements OnInit {
     this.reviewsService.getCurrentMovieReviewsList(id).then((data: Response) => {
       this.ratingExist = false;
       this.overalRating = 0;
-      this.ratingList = data.json();
+      this.ratingList = data;
       this.ratingList.forEach(element => {
         if (element && element.rating) {
           this.overalRating = this.overalRating + Number(element.rating);

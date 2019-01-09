@@ -3,6 +3,9 @@ import { MoviesService } from '../services/movies-service';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AccountsService } from '../services/account-service';
+import { LoadingController } from '@ionic/angular';
+
+
 
 
 class MovieModel {
@@ -31,7 +34,8 @@ export class MoviesPage implements OnInit {
   constructor(
     public Service: MoviesService,
     private router: Router,
-    public accountsService: AccountsService) {
+    public accountsService: AccountsService,
+    public loadingController: LoadingController) {
     }
 
   ngOnInit() {
@@ -43,8 +47,10 @@ export class MoviesPage implements OnInit {
   }
 
   getReviewList() {
+    // this.presentLoading();
     this.Service.getMovies().then((data: Response) => {
-      this.movies = data.json();
+      this.movies = data;
+      // this.loadingController.dismiss();
     });
   }
 
@@ -53,5 +59,12 @@ export class MoviesPage implements OnInit {
   }
   updateMovieDetails(movie) {
     this.router.navigate(['update-movie', movie._id]);
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      message: 'Hellooo'
+    });
+    return await loading.present();
   }
 }
