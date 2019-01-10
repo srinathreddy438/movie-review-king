@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-// import 'rxjs/add/operator/map';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class AccountsService {
@@ -10,7 +12,7 @@ export class AccountsService {
     // url = 'http://localhost:9000/api/accounts';
     url = 'https://moviesreviewapp.herokuapp.com/api/accounts';
 
-    constructor(public http: Http) {
+    constructor(private httpCall: HttpClient) {
         this.data = null;
     }
 
@@ -25,7 +27,7 @@ export class AccountsService {
         return new Promise(resolve => {
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
-            this.http.post(this.url, JSON.stringify(account), { headers: headers })
+            this.httpCall.post(this.url, JSON.stringify(account), httpOptions)
                 .subscribe(res => {
                     resolve(res);
                 });
@@ -37,7 +39,7 @@ export class AccountsService {
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
             const url = this.url + '/' + account._id;
-            this.http.put(url, JSON.stringify(account), { headers: headers })
+            this.httpCall.put(url, JSON.stringify(account), httpOptions)
                 .subscribe(res => {
                     resolve(res);
                 });

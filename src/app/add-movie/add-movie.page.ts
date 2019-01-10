@@ -41,7 +41,7 @@ export class AddMoviePage implements OnInit {
 
   getReviewList(id) {
     this.movieService.getMovie(id).then((data: Response) => {
-      this.movie = data.json();
+      this.movie = data;
     });
   }
 

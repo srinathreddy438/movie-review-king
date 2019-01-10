@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 // import 'rxjs/add/operator/map';
 
-
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable()
 export class ReviewsService {
 
@@ -11,13 +12,13 @@ export class ReviewsService {
     // url = 'http://localhost:9000/api/reviews';
     url = 'https://moviesreviewapp.herokuapp.com/api/reviews';
 
-    constructor(public http: Http, private httpCall: HttpClient) {
+    constructor(private httpCall: HttpClient) {
         this.data = null;
     }
 
     getAllMoviesReviewsList() {
         return new Promise(resolve => {
-            this.http.get(this.url)
+            this.httpCall.get(this.url)
                 .subscribe(data => {
                     this.data = data;
                     resolve(this.data);
@@ -41,7 +42,7 @@ export class ReviewsService {
         return new Promise(resolve => {
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
-            this.http.post(this.url, JSON.stringify(review), { headers: headers }).subscribe(res => {
+            this.httpCall.post(this.url, JSON.stringify(review), httpOptions).subscribe(res => {
                 resolve(res);
             });
         });
@@ -52,7 +53,7 @@ export class ReviewsService {
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
             const url = this.url + '/' + review._id;
-            this.http.put(url, JSON.stringify(review), { headers: headers }).subscribe(res => {
+            this.httpCall.put(url, JSON.stringify(review), httpOptions).subscribe(res => {
                 resolve(res);
             });
         });
@@ -61,7 +62,7 @@ export class ReviewsService {
     deleteReview(review) {
         return new Promise(resolve => {
             const url = this.url + '/' + review._id;
-            this.http.delete(url).subscribe((res) => {
+            this.httpCall.delete(url).subscribe((res) => {
                 resolve(res);
             });
         });

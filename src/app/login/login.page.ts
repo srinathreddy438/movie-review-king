@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
         if (this.account && this.account._id) {
           this.account.userName = this.account.userName.trim();
           this.accountsService.updateAccount(this.account).then((userObj: any) => {
-            if (userObj.json() === 'accountExisted') {
+            if (userObj === 'accountExisted') {
               const msg = 'username exists';
               this.presentToastWithOptions(msg);
             } else {
@@ -51,12 +51,12 @@ export class LoginPage implements OnInit {
         } else {
           this.accountsService.createAccount(this.account).then((userObj: any) => {
             this.account.userName = this.account.userName.trim();
-            if (userObj.json() === 'accountExisted') {
+            if (userObj === 'accountExisted') {
               const msg = 'username exists';
               this.presentToastWithOptions(msg);
             } else {
-              this.accountsService.setLoginInfo(userObj.json());
-              this.account = userObj.json();
+              this.accountsService.setLoginInfo(userObj);
+              this.account = userObj;
               this.router.navigate(['']);
             }
           });

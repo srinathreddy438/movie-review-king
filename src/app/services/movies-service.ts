@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
-// import 'rxjs/add/operator/map';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable()
 export class MoviesService {
-
     data: any;
     // url = 'http://localhost:9000/api/movies';
     url = 'https://moviesreviewapp.herokuapp.com/api/movies';
 
-    constructor(public http: Http, private httpCall: HttpClient) {
+    constructor(private httpCall: HttpClient) {
         this.data = null;
     }
     getMovies() {
@@ -40,24 +39,20 @@ export class MoviesService {
     }
 
     createMovie(movie) {
-        const headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        this.http.post(this.url, JSON.stringify(movie), { headers: headers })
+        this.httpCall.post(this.url, JSON.stringify(movie), httpOptions)
             .subscribe(res => {
             });
     }
 
     updateMovie(movie) {
-        const headers = new Headers();
-        headers.append('Content-Type', 'application/json');
         const url = this.url + '/' + movie._id;
-        this.http.put(url, JSON.stringify(movie), { headers: headers })
+        this.httpCall.put(url, JSON.stringify(movie), httpOptions)
             .subscribe(res => {
             });
     }
 
     deleteMovie(id) {
-        this.http.delete('http://localhost:9000/api/movies/' + id).subscribe((res) => {
+        this.httpCall.delete('http://localhost:9000/api/movies/' + id).subscribe((res) => {
         });
     }
 
