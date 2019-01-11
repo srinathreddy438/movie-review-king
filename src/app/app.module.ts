@@ -7,6 +7,8 @@ import { MomentModule } from 'ngx-moment';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+// app rate plugin
+import { AppRate } from '@ionic-native/app-rate/ngx';
 
 import { HttpModule } from '@angular/http';
 
@@ -44,6 +46,7 @@ import { SharedModule } from './shared/shared.module';
   ],
   exports: [],
   providers: [
+    AppRate,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
