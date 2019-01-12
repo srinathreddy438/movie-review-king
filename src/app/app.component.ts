@@ -42,6 +42,11 @@ export class AppComponent implements DoCheck {
       icon: 'list'
     },
     {
+      title: 'Trending Videos',
+      url: '/trending-videos',
+      icon: 'list'
+    },
+    {
       title: 'Login',
       url: '/login',
       icon: 'person'
@@ -52,6 +57,11 @@ export class AppComponent implements DoCheck {
     {
       title: 'Add / Update Movie',
       url: '/add-movie',
+      icon: 'create'
+    },
+    {
+      title: 'Add / Update Trending Videos',
+      url: '/create-trending-videos',
       icon: 'create'
     }
   ];

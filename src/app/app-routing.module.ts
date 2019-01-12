@@ -10,6 +10,11 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'add-movie', loadChildren: './add-movie/add-movie.module#AddMoviePageModule', canActivate: [OnlyLoggedInUsersGuard]},
   { path: 'update-movie/:id', loadChildren: './add-movie/add-movie.module#AddMoviePageModule', canActivate: [OnlyLoggedInUsersGuard]},
+  { path: 'trending-videos', loadChildren: './trending-videos/trending-videos.module#TrendingVideosPageModule' },
+  {
+    path: 'create-trending-videos',
+    loadChildren: './trending-videos/create-trending-videos/create-trending-videos.module#CreateTrendingVideosPageModule'
+  },
   { path: '**', loadChildren: './home/home.module#HomePageModule' }
 ];
 @NgModule({
