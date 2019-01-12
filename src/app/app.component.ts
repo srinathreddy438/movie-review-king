@@ -6,6 +6,7 @@ import { AccountsService } from './services/account-service';
 import { LoaderService } from './shared/interceptor';
 import { LoadingController } from '@ionic/angular';
 import { AppRate } from '@ionic-native/app-rate/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -21,7 +22,8 @@ export class AppComponent implements DoCheck {
     public loaderService: LoaderService,
     public loadingController: LoadingController,
     private cd: ChangeDetectorRef,
-    private appRate: AppRate
+    private appRate: AppRate,
+    private socialSharing: SocialSharing
   ) {
     /*if (this.loaderService.isLoading) {
     this.ref.detectChanges();
@@ -75,19 +77,12 @@ export class AppComponent implements DoCheck {
           onRateDialogShow: function (callback) {
             console.log('dfcsd');
           },
-          onButtonClicked: function(buttonIndex) {
+          onButtonClicked: function (buttonIndex) {
             console.log('Selected Index is ' + buttonIndex);
           }
         },
         simpleMode: true
       };
-      /*this.appRate.preferences = {
-        displayAppName: 'srinath reddy',
-        usesUntilPrompt: 3,
-        storeAppURL: {
-          android: 'market://details?id=com.svappzone.reviewking'
-        }
-      };*/
     });
 
     if (this.accountsService && this.accountsService.getLoginInfo() && this.accountsService.getLoginInfo().userName === 'srinath440') {
@@ -108,8 +103,44 @@ export class AppComponent implements DoCheck {
 
   rateApp() {
     this.appRate.promptForRating(true);
-    /*this.platform.ready().then(() => {
-      this.appRate.promptForRating(true);
+  }
+
+  shareApp(network) {
+    // this is the complete list of currently supported params you can pass to the plugin (all optional)
+    /*const options = {
+      message: 'Hello Please install Movie Review King', // not supported on some apps (Facebook, Instagram)
+      // subject: 'the subject', // fi. for email
+      // files: ['', ''], // an array of filenames either locally or remotely
+      url: 'https://play.google.com/store/apps/details?id=com.svappzone.reviewking',
+      chooserTitle: 'Movie Review King', // Android only, you can override the default share sheet title,
+      appPackageName: 'com.svappzone.reviewking' // Android only, you can provide id of the App you want to share with
+    };
+
+    this.socialSharing.shareWithOptions(options).then(() => {
+      // Success!
+    }).catch(() => {
+      // Error!
     });*/
+    if (network === 'whatsapp') {
+      this.socialSharing.shareViaWhatsApp(
+        'Hello Please install Movie Review King app',
+        '',
+        'https://play.google.com/store/apps/details?id=com.svappzone.reviewking'
+      );
+    }
+    if (network === 'facebook') {
+      this.socialSharing.shareViaFacebook(
+        'Hello Please install Movie Review King app',
+        '',
+        'https://play.google.com/store/apps/details?id=com.svappzone.reviewking'
+      );
+    }
+    if (network === 'twitter') {
+      this.socialSharing.shareViaTwitter(
+        'Hello Please install Movie Review King app',
+        '',
+        'https://play.google.com/store/apps/details?id=com.svappzone.reviewking'
+      );
+    }
   }
 }

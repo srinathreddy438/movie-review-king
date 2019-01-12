@@ -7,3 +7,9 @@
     bottom: 0px;
     z-index: 1;
 }
+.menu-list {
+    height: calc(100% - 44px);
+    .menu-nav {
+        height: 100%;
+    }
+}

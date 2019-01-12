@@ -6,8 +6,8 @@
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content>
-        <ion-list>
+      <ion-content class="menu-list">
+        <ion-list class="menu-nav">
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
               <ion-icon slot="start" [name]="p.icon" color="secondary"></ion-icon>
@@ -16,7 +16,28 @@
               </ion-label>
             </ion-item>
           </ion-menu-toggle>
-          <ion-item (click)="rateApp()">Rate This App</ion-item>
+          <!-- fab placed in the center of the content with a list on each side -->
+          <ion-fab vertical="bottom" horizontal="start" id="fab4" slot="fixed">
+            <ion-fab-button color="secondary" class="e2eFabBottomLeft">
+              <ion-icon name="md-share"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-list side="top">
+              <ion-fab-button (click)="shareApp('twitter')" color="secondary">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </ion-fab-button>
+              <ion-fab-button (click)="shareApp('facebook')" color="secondary">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </ion-fab-button>
+              <ion-fab-button (click)="shareApp('whatsapp')" color="secondary">
+                  <ion-icon name="logo-whatsapp"></ion-icon>
+                </ion-fab-button>
+            </ion-fab-list>
+          </ion-fab>
+          <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button (click)="rateApp()" color="secondary">
+              <ion-icon name="star-half"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
         </ion-list>
       </ion-content>
     </ion-menu>

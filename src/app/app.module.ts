@@ -9,6 +9,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 // app rate plugin
 import { AppRate } from '@ionic-native/app-rate/ngx';
+// social share plugin
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 import { HttpModule } from '@angular/http';
 
@@ -47,6 +49,7 @@ import { SharedModule } from './shared/shared.module';
   exports: [],
   providers: [
     AppRate,
+    SocialSharing,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
