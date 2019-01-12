@@ -1,9 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-icon routerLink="/home-page" class="home-icon" [name]="'home'"></ion-icon>
-    <ion-title>reviews</ion-title>
-  </ion-toolbar>
-</ion-header> -->
 <ion-header>
   <ion-toolbar color="secondary">
     <ion-buttons slot="start" routerLink="">
@@ -16,71 +10,20 @@
 </ion-header>
 <ion-content class="movies-page">
   <ion-card *ngFor="let movie of movies">
-    <img *ngIf="!movie.image" src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png" />
-    <img *ngIf="movie.image" src="{{movie.image}}" />
-    <!-- {{movie.certificate}} -->
-
-    <div class="movie-detail">
-      <div>
-        <div class="title">{{movie.title}}</div>
-        <div>{{movie.language}}</div>
-      </div>
-      <div>
-          <ion-button color="secondary" size="small" (click)="goToReviewPage(movie)">View</ion-button>
+    <div (click)="goToReviewPage(movie)">
+      <img *ngIf="!movie.image" src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png" />
+      <img *ngIf="movie.image" src="{{movie.image}}" />
+      <div class="movie-detail">
+        <div>
+          <div class="title">{{movie.title}}</div>
+          <div>{{movie.language}}</div>
+        </div>
+        <div>
+          <ion-button color="secondary" size="small">View</ion-button>
+        </div>
       </div>
     </div>
-    <!-- <ion-card-title>
-      {{movie.title}}
-    </ion-card-title>
-    <ion-card-subtitle>
-      {{movie.language}}
-    </ion-card-subtitle>
-    <ion-button color="secondary" (click)="goToReviewPage(movie)">View</ion-button> -->
     <ion-button *ngIf="isAdmin" color="secondary" size="small" (click)="updateMovieDetails(movie)">Update</ion-button>
   </ion-card>
 
 </ion-content>
-<!-- 
-<ion-header>
-    <ion-navbar transparent>
-     <ion-title>
-       Review King
-     </ion-title>
-     <ion-buttons end>
-       <button ion-button icon-only (click)="addReview()"><ion-icon name="add"></ion-icon></button>
-     </ion-buttons>
-    </ion-navbar>
-   </ion-header>
-    
-   <ion-content>
-    
-     <ion-list no-lines>
-    
-       <ion-item-sliding *ngFor="let review of reviews">
-    
-         <ion-item>
-    
-           <ion-avatar item-left>
-             <img src="https://api.adorable.io/avatars/75/{{review.title}}">
-           </ion-avatar>
-    
-           <h2>{{review.title}}</h2>
-           <p>{{review.description}}</p>
-    
-           <ion-icon *ngIf="review.rating < 50" danger name="sad"></ion-icon>
-           <ion-icon *ngIf="review.rating >= 50" secondary name="happy"></ion-icon>
-           {{review.rating}}
-    
-         </ion-item>
-    
-         <ion-item-options>
-           <button ion-button color="danger" (click)="deleteReview(review)">
-             <ion-icon name="trash"></ion-icon>
-             Delete
-           </button>
-         </ion-item-options>
-       </ion-item-sliding>
-    
-     </ion-list>
-    
-   </ion-content> -->

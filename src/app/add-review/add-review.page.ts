@@ -6,6 +6,8 @@ import { MoviesService } from '../services/movies-service';
 import { AccountsService } from '../services/account-service';
 import { ReviewsService } from './../services/review-service';
 
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
+
 class MovieModel {
   constructor(
     public title?: string,
@@ -38,7 +40,8 @@ export class AddReviewPage implements OnInit {
     public movieService: MoviesService,
     public accountsService: AccountsService,
     public reviewsService: ReviewsService,
-    public popoverController: PopoverController) {
+    public popoverController: PopoverController,
+    private youtube: YoutubeVideoPlayer) {
     this.movie = new MovieModel();
   }
 
@@ -91,6 +94,10 @@ export class AddReviewPage implements OnInit {
     );
   }
 
+  playVideo(url) {
+    this.youtube.openVideo(url);
+  }
+
   async presentPopover(ev: any, existRatingObj) {
     const existRating = existRatingObj ? { ...existRatingObj } : '';
     const popover = await this.popoverController.create({
@@ -114,9 +121,9 @@ export class AddReviewPage implements OnInit {
   getMovieDetails(id) {
     this.movieService.getMovie(id).then((data: Response) => {
       this.movie = data;
-      if (this.movie.video) {
+      /*if (this.movie.video) {
         this.movie.video = 'https://www.youtube.com/embed/' + this.movie.video;
-      }
+      }*/
     });
   }
 

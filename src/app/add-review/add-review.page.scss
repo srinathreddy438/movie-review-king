@@ -1,4 +1,15 @@
 .review-page {
+    .video-banner {
+        position: relative;
+        .play-icon {
+            position: absolute;
+            top: 50px;
+            left: 46%;
+            color: white;
+            font-size: 45px;
+        }
+    }
+
     .detail-section {
         padding: 20px;
         .rating-list {

@@ -92,7 +92,6 @@ export class AppComponent implements DoCheck {
 
   async presentLoading() {
     const loading = await this.loadingController.create({
-      message: 'Hellooo'
     });
     return await loading.present();
   }
@@ -106,21 +105,6 @@ export class AppComponent implements DoCheck {
   }
 
   shareApp(network) {
-    // this is the complete list of currently supported params you can pass to the plugin (all optional)
-    /*const options = {
-      message: 'Hello Please install Movie Review King', // not supported on some apps (Facebook, Instagram)
-      // subject: 'the subject', // fi. for email
-      // files: ['', ''], // an array of filenames either locally or remotely
-      url: 'https://play.google.com/store/apps/details?id=com.svappzone.reviewking',
-      chooserTitle: 'Movie Review King', // Android only, you can override the default share sheet title,
-      appPackageName: 'com.svappzone.reviewking' // Android only, you can provide id of the App you want to share with
-    };
-
-    this.socialSharing.shareWithOptions(options).then(() => {
-      // Success!
-    }).catch(() => {
-      // Error!
-    });*/
     if (network === 'whatsapp') {
       this.socialSharing.shareViaWhatsApp(
         'Hello Please install Movie Review King app',

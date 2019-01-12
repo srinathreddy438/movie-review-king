@@ -11,6 +11,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRate } from '@ionic-native/app-rate/ngx';
 // social share plugin
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+// youtube video plugin
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
 
 import { HttpModule } from '@angular/http';
 
@@ -50,6 +52,7 @@ import { SharedModule } from './shared/shared.module';
   providers: [
     AppRate,
     SocialSharing,
+    YoutubeVideoPlayer,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
