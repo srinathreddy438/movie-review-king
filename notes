@@ -34,6 +34,14 @@ app/res/minmap
 https://in.bookmyshow.com/movies/telugu
 
 
+//check heroku
+heroku logs --tail
+heroku open -> incase it is saying under maintainence run below commancd
+heroku maintenance:off
+heroku ps:scale web=1
+
+
+
 
 
 

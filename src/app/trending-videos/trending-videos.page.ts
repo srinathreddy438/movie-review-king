@@ -12,7 +12,7 @@ export class TrendingVideosPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.videoUrl1 = 'https://www.youtube.com/embed/MTXXMDfIicA';
+    this.videoUrl1 = 'https://www.youtube.com/embed/MTXXMDfIicA?rel=0';
     this.videoUrl2 = 'https://www.youtube.com/embed/otAcYFVFE7k';
     this.videoUrl3 = 'https://www.youtube.com/embed/HS8Df6ngZ24';
   }

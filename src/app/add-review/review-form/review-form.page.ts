@@ -78,7 +78,8 @@ export class ReviewFormPagePopOver implements OnInit {
   }
   submitReview() {
     if (this.reviewModel && this.reviewModel.rating) {
-      this.reviewModel.ratingGivenDate = moment().format('DD/MM/YYYY');
+      // this.reviewModel.ratingGivenDate = moment().format('DD/MM/YYYY');
+      this.reviewModel.ratingGivenDate = moment()._d;
       if (this.reviewModel && this.reviewModel._id) {
         this.reviewsService.updateReview(this.reviewModel).then((reviewsObj: any) => {
           // this.viewCtrl.dismiss(reviewsObj.json());
