@@ -15,7 +15,10 @@ const routes: Routes = [
     path: 'create-trending-videos',
     loadChildren: './trending-videos/create-trending-videos/create-trending-videos.module#CreateTrendingVideosPageModule'
   },
-  { path: '**', loadChildren: './home/home.module#HomePageModule' }
+  { path: 'photos', loadChildren: './photos/photos.module#PhotosPageModule' },
+  { path: 'create-photos', loadChildren: './photos/create-photos/create-photos.module#CreatePhotosPageModule' },
+  { path: 'update-photos/:id', loadChildren: './photos/create-photos/create-photos.module#CreatePhotosPageModule' },
+  { path: '**', loadChildren: './home/home.module#HomePageModule' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -47,6 +47,11 @@ export class AppComponent implements DoCheck {
       icon: 'list'
     },
     {
+      title: 'Photos',
+      url: '/photos',
+      icon: 'list'
+    },
+    {
       title: 'Login',
       url: '/login',
       icon: 'person'
@@ -63,9 +68,13 @@ export class AppComponent implements DoCheck {
       title: 'Add / Update Trending Videos',
       url: '/create-trending-videos',
       icon: 'create'
+    },
+    {
+      title: 'Add / Update Photos',
+      url: '/create-photos',
+      icon: 'create'
     }
   ];
-
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
