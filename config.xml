@@ -87,5 +87,5 @@
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.1+" />
     </plugin>
     <plugin name="cordova-plugin-youtube-video-player" spec="2.3.0" />
-    <engine name="android" spec="^7.1.4" />
+    <engine name="android" spec="7.1.4" />
 </widget>
