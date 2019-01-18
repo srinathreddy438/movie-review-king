@@ -1,0 +1,18 @@
+.image-slider {
+    margin-bottom: 20px;
+}
+.update-delete-iocs {
+    display: flex;
+    position: relative;
+    font-size: 40px;
+    .create-icon {
+        position: absolute;
+        right: 40px;
+        z-index: 100;
+    }
+    .delete-icon {
+        position: absolute;
+        right: 0px;
+        z-index: 100;
+    }
+}

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start" routerLink="">
+      <ion-icon name="arrow-back" class="back-icon"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      Create / Update Photos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label position="stacked" color="primary">Image URL</ion-label>
+    <ion-input autofocus [(ngModel)]="photo.imageName" border-bottom="primary"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" color="primary">Group By Name</ion-label>
+    <ion-input autofocus [(ngModel)]="photo.groupByName" border-bottom="primary"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="primary">Show Slider</ion-label>
+    <ion-checkbox color="primary" slot="end" [(ngModel)]="photo.showSlider"></ion-checkbox>
+  </ion-item>
+  <ion-button color="primary" expand="block" (click)="createPhoto()">Create / Update Photo</ion-button>
+</ion-content>
