@@ -10,13 +10,15 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-slides pager="true" [options]="slideOpts" loop="true" speed="100" class="image-slider">
-    <ion-slide *ngFor="let photo of photosList">
-      <img [src]="photo.imageName">
-      <div class="update-delete-iocs">
-          <ion-icon (click)="updatePhotoDetails(photo)" class="create-icon" color="primary" name="create"></ion-icon>
-          <ion-icon (click)="deletePhoto(photo)" class="delete-icon" color="primary" name="trash"></ion-icon>
-      </div>
-    </ion-slide>
-  </ion-slides>
+  <div *ngFor="let photos of photosList">
+    <ion-slides [pager]="(photos.length > 1) ? true : false" [options]="slideOpts" loop="true" speed="100" class="image-slider">
+      <ion-slide *ngFor="let photo of photos">
+        <img [src]="photo.imageName">
+        <div class="update-delete-iocs">
+          <ion-icon *ngIf="isAdmin" (click)="updatePhotoDetails(photo)" class="create-icon" color="primary" name="create"></ion-icon>
+          <ion-icon *ngIf="isAdmin" (click)="deletePhoto(photo)" class="delete-icon" color="primary" name="trash"></ion-icon>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>
