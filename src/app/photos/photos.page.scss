@@ -1,5 +1,9 @@
 .image-slider {
     margin-bottom: 20px;
+    img {
+        width: 100%;
+        height: 160px;
+    }
 }
 .update-delete-iocs {
     display: flex;

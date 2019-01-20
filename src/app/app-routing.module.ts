@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'create-trending-videos',
     loadChildren: './trending-videos/create-trending-videos/create-trending-videos.module#CreateTrendingVideosPageModule'
   },
+  {
+    path: 'update-trending-videos/:id',
+    loadChildren: './trending-videos/create-trending-videos/create-trending-videos.module#CreateTrendingVideosPageModule'
+  },
   { path: 'photos', loadChildren: './photos/photos.module#PhotosPageModule' },
   { path: 'create-photos', loadChildren: './photos/create-photos/create-photos.module#CreatePhotosPageModule' },
   { path: 'update-photos/:id', loadChildren: './photos/create-photos/create-photos.module#CreatePhotosPageModule' },

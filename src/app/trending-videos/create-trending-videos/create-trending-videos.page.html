@@ -9,6 +9,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
 
+<ion-content padding>
+  <ion-item>
+    <ion-label position="stacked" color="primary">Image URL</ion-label>
+    <ion-input autofocus [(ngModel)]="trending.imageName" border-bottom="primary"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" color="primary">Video Url</ion-label>
+    <ion-input autofocus [(ngModel)]="trending.videoUrl" border-bottom="primary"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked" color="primary">Video Title</ion-label>
+    <ion-input autofocus [(ngModel)]="trending.videoTitle" border-bottom="primary"></ion-input>
+  </ion-item>
+  <ion-button color="primary" expand="block" (click)="createVideo()">Create / Update Video</ion-button>
 </ion-content>

@@ -40,13 +40,13 @@ export class MoviesPage implements OnInit {
 
   ngOnInit() {
     this.movies = [];
-    this.getReviewList();
+    this.getMoviesList();
     if (this.accountsService && this.accountsService.getLoginInfo() && this.accountsService.getLoginInfo().userName === 'srinath440') {
       this.isAdmin = true;
     }
   }
 
-  getReviewList() {
+  getMoviesList() {
     // this.presentLoading();
     this.Service.getMovies().then((data: Response) => {
       this.movies = data;
@@ -66,5 +66,11 @@ export class MoviesPage implements OnInit {
       message: 'Hellooo'
     });
     return await loading.present();
+  }
+
+  deleteMovie(movie) {
+    this.Service.deleteMovie(movie).then((deleteObj: any) => {
+      this.getMoviesList();
+    });
   }
 }

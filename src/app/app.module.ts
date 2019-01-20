@@ -27,6 +27,7 @@ import { ReviewsService } from './services/review-service';
 // shared module
 import { SharedModule } from './shared/shared.module';
 import { PhotosService } from './services/photo-service';
+import { TrendingService } from './services/trending-service';
 
 // These are all imports required for Pro Client with Monitoring & Deploy,
 // feel free to merge into existing imports above.
@@ -61,6 +62,7 @@ import { PhotosService } from './services/photo-service';
     AccountsService,
     ReviewsService,
     PhotosService,
+    TrendingService,
     OnlyLoggedInUsersGuard
   ],
   bootstrap: [AppComponent]

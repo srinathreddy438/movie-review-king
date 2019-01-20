@@ -51,8 +51,12 @@ export class MoviesService {
             });
     }
 
-    deleteMovie(id) {
-        this.httpCall.delete('http://localhost:9000/api/movies/' + id).subscribe((res) => {
+    deleteMovie(movie) {
+        return new Promise(resolve => {
+            const url = this.url + '/' + movie._id;
+            this.httpCall.delete(url).subscribe((res) => {
+                resolve(res);
+            });
         });
     }
 
