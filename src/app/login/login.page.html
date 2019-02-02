@@ -15,7 +15,7 @@
   <div>
     <ion-item color="secondary">
       <ion-label position="stacked" color="primary">User Name</ion-label>
-      <ion-input autofocus [disabled]='userSessionExists' [(ngModel)]="account.userName" border-bottom="primary"></ion-input>
+      <ion-input autofocus [(ngModel)]="account.userName" border-bottom="primary"></ion-input>
     </ion-item>
   </div>    
   <ion-button color="primary" expand="block" (click)="login()">Sign In</ion-button>

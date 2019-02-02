@@ -34,11 +34,11 @@ export class AccountsService {
         });
     }
 
-    updateAccount(account) {
+    updateAccount(account, oldUserName) {
         return new Promise(resolve => {
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
-            const url = this.url + '/' + account._id;
+            const url = this.url + '/' + account._id + '/' + oldUserName;
             this.httpCall.put(url, JSON.stringify(account), httpOptions)
                 .subscribe(res => {
                     resolve(res);

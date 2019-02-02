@@ -8,6 +8,9 @@
     }
     .video-banner {
         position: relative;
+        img {
+            height: 140px;
+        }
         .play-icon {
             position: absolute;
             top: 50px;

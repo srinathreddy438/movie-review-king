@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
       if (username && username.length && (username.length > 3)) {
         if (this.account && this.account._id) {
           this.account.userName = this.account.userName.trim();
-          this.accountsService.updateAccount(this.account).then((userObj: any) => {
+          this.accountsService.updateAccount(this.account, this.accountsService.getLoginInfo().userName).then((userObj: any) => {
             if (userObj === 'accountExisted') {
               const msg = 'username exists';
               this.presentToastWithOptions(msg);
