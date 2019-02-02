@@ -1,6 +1,25 @@
 .image-slider {
     height: 300px;
 }
-.update-delete-iocs {
-    font-size: 25px;
+
+.trendings {
+    .update-delete-iocs {
+        font-size: 25px;
+    }
+    .video-banner {
+        position: relative;
+        .play-icon {
+            position: absolute;
+            top: 50px;
+            left: 46%;
+            color: white;
+            font-size: 45px;
+        }
+    }
+    .video-detail {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        align-items: center;
+    }
 }

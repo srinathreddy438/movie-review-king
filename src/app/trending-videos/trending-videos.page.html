@@ -8,12 +8,23 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content padding>
-  <div *ngFor="let video of trendingList">
-    <iframe (click)="playVideo(video?.videoUrl)" *ngIf="video?.videoUrl" width="100%" height="200" [src]="'https://www.youtube.com/embed/' + video.videoUrl | safePipe" allowfullscreen controls='0'></iframe>
-    <div class="update-delete-iocs">
-        <ion-icon *ngIf="isAdmin" (click)="updateTrendingDetails(video)" class="create-icon" color="primary" name="create"></ion-icon>
-        <ion-icon *ngIf="isAdmin" (click)="deleteTrending(video)" class="delete-icon" color="primary" name="trash"></ion-icon>
+<ion-content class="trendings">
+  <ion-card *ngFor="let video of trendingList">
+    <!-- <iframe (click)="playVideo(video?.videoUrl)" *ngIf="video?.videoUrl" width="100%" height="200" [src]="'https://www.youtube.com/embed/' + video.videoUrl | safePipe" allowfullscreen controls='0'></iframe> -->
+    <div class="video-banner" (click)="playVideo(video?.videoUrl)">
+      <img *ngIf="video?.imageName" src="{{video?.imageName}}" />
+      <img *ngIf="!video?.imageName" src="https://moviesreviewapp.herokuapp.com/images/antariksham-9000kmph.PNG" />
+      <ion-icon class="play-icon" name="play-circle"></ion-icon>
     </div>
-  </div>
+    <div class="video-detail">
+      <div class="title">{{video?.videoTitle}}</div>
+      <div>
+        <ion-button color="secondary" size="small" (click)="playVideo(video?.videoUrl)">View</ion-button>
+      </div>
+    </div>
+    <div class="update-delete-iocs">
+      <ion-icon *ngIf="isAdmin" (click)="updateTrendingDetails(video)" class="create-icon" color="primary" name="create"></ion-icon>
+      <ion-icon *ngIf="isAdmin" (click)="deleteTrending(video)" class="delete-icon" color="primary" name="trash"></ion-icon>
+    </div>
+  </ion-card>
 </ion-content>
