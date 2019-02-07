@@ -41,7 +41,7 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-    <img class="spinner" *ngIf="loaderService.isLoading | async" src="https://loading.io/spinners/leave/index.laurel-leaves-spinner.svg">
+    <img class="spinner" *ngIf="!loaderService.hideLoader && (loaderService.isLoading | async)" src="https://loading.io/spinners/leave/index.laurel-leaves-spinner.svg">
     <ion-router-outlet main></ion-router-outlet>
   </ion-split-pane>
 </ion-app>

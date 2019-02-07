@@ -16,9 +16,9 @@ export class TrendingService {
         this.data = null;
     }
 
-    getAllTrendingsList() {
+    getAllTrendingsList(pageNum, limit) {
         return new Promise(resolve => {
-            this.httpCall.get(this.url)
+            this.httpCall.get(this.url, {params: {pageNum: pageNum, limit: limit}})
                 .subscribe(data => {
                     this.data = data;
                     resolve(this.data);

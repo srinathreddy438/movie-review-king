@@ -13,12 +13,12 @@ export class MoviesService {
     constructor(private httpCall: HttpClient) {
         this.data = null;
     }
-    getMovies() {
+    getMovies(pageNum, limit) {
         /*if (this.data) {
             return Promise.resolve(this.data);
         }*/
         return new Promise(resolve => {
-            this.httpCall.get(this.url)
+            this.httpCall.get(this.url, {params: {pageNum: pageNum, limit: limit}})
                 // .map(res => res.json())
                 .subscribe(data => {
                     this.data = data;

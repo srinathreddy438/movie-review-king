@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class LoaderService {
     public isLoading = new BehaviorSubject(false);
-
+    public hideLoader = false;
     constructor() {}
 }
 

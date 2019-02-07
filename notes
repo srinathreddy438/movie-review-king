@@ -50,59 +50,24 @@ config.xml
 get finger print
 refer screenshot
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 publish an app
 _____________
 https://www.youtube.com/watch?v=1u5mA9J5FTg
+
+steps: 
+https://play.google.com/apps/publish/?pli=1&account=8060470727509950304#PricingPlace:p=com.svappzone.reviewking&appid=4972369204815240844
+
+Release management
+    App releases
+        browse signed apk file and attachmens
+
+Store presence - u can update anytime this date
+    Store listing
+        we can update description, screenshots, mobile num, email, category
+    pricing and discription
+        it will show any user permissions required
+        contain adds or not?
+    once u submit everything it will show in bottom status like in progress
+    
 
 
