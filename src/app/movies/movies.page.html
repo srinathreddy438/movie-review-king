@@ -1,14 +1,30 @@
-<ion-header>
+<ion-header class="movies-header">
   <ion-toolbar color="secondary">
-    <ion-buttons slot="start" routerLink="">
-      <ion-icon name="arrow-back" class="back-icon"></ion-icon>
+    <ion-buttons slot="start">
+      <ion-button routerLink="">
+        <ion-icon name="arrow-back" class="back-icon"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <!-- <ion-button (click)="toggleSearc()">
+        <ion-icon class="search-icon" name="search"></ion-icon>
+      </ion-button> -->
+      <ion-button (click)="openLanguageSettings($event)">
+        <ion-icon class="language-settings" name="md-settings"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>
-      Movies
+      <div class="movies-title">Now Showing Movies</div>
+      <div class="selcted-langualge">{{prefferedLanguage}}</div>
     </ion-title>
   </ion-toolbar>
+  <ion-toolbar *ngIf="showSearch">
+    <ion-searchbar placeholder="Search Movie Name" animated debounce="500" color="danger"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
-<ion-content class="movies-page">
+
+
+<ion-content id="infiniteContainer" class="movies-page">
   <ion-card *ngFor="let movie of movies">
     <div (click)="goToReviewPage(movie)">
       <img *ngIf="!movie.image" src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png" />
@@ -27,9 +43,7 @@
     <ion-button *ngIf="isAdmin" color="secondary" size="small" (click)="deleteMovie(movie)">Delete</ion-button>
   </ion-card>
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMoreData($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MoviesService } from '../services/movies-service';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AccountsService } from '../services/account-service';
 import { LoadingController } from '@ionic/angular';
 import { LoaderService } from '../shared/interceptor';
+import { ModalController, InfiniteScroll, Content } from '@ionic/angular';
 
 class MovieModel {
   constructor(
@@ -30,23 +31,36 @@ export class MoviesPage implements OnInit {
   isAdmin: boolean;
   pageNum: number;
   limit: number;
-
+  prefferedLanguage;
+  showSearch;
+  @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
+  @ViewChild( Content ) pageTop: Content;
   constructor(
     public Service: MoviesService,
     private router: Router,
     public accountsService: AccountsService,
     public loadingController: LoadingController,
-    public loaderService: LoaderService) {
+    public loaderService: LoaderService,
+    public modalController: ModalController) {
     }
 
   ngOnInit() {
+    if (!localStorage.prefferedLanguage) {
+      localStorage.prefferedLanguage = 'All Languages';
+    }
+    this.prefferedLanguage = localStorage.prefferedLanguage;
+    this.showSearch = false;
     this.pageNum = 0;
-    this.limit = 3;
+    this.limit = 4;
     this.movies = [];
     this.getMoviesList();
     if (this.accountsService && this.accountsService.getLoginInfo() && this.accountsService.getLoginInfo().userName === 'srinath440') {
       this.isAdmin = true;
     }
+  }
+
+  toggleSearc() {
+    // this.showSearch = !this.showSearch;
   }
 
   getMoviesList() {
@@ -91,5 +105,58 @@ export class MoviesPage implements OnInit {
       }
       this.loaderService.hideLoader = false;
     });
+  }
+
+  async openLanguageSettings(ev: any) {
+    const popover = await this.modalController.create({
+      component: LanguageSettingsModel,
+      cssClass: 'language-settings',
+      animated: true,
+      // showBackdrop: true,
+      // backdropDismiss: true,
+      componentProps: { prefferedLanguage: this.prefferedLanguage}
+    }
+    );
+    popover.onDidDismiss().then(data => {
+      if (data && data.data) {
+        if (localStorage.prefferedLanguage && (localStorage.prefferedLanguage !== data.data)) {
+          localStorage.prefferedLanguage = data.data;
+          this.prefferedLanguage = localStorage.prefferedLanguage;
+          this.pageNum = 0;
+          this.infiniteScroll.disabled = false;
+          this.pageTop.scrollToTop();
+          this.getMoviesList();
+        }
+      }
+    });
+    return await popover.present();
+  }
+
+  selectLanguage(language) {
+    alert('parent');
+  }
+}
+
+@Component({
+  selector: 'app-language-settings',
+  templateUrl: './language-settings.page.html'
+})
+export class LanguageSettingsModel implements OnInit {
+  languages: Array<string>;
+  constructor(public modalController: ModalController) {
+    this.languages = [
+      'All Languages',
+      'Telugu',
+      'Hindi',
+      'English',
+      'Tamil',
+      'Malayalam',
+      'Kannada'
+    ];
+  }
+  ngOnInit() {
+  }
+  selectLanguage(language) {
+    this.modalController.dismiss(language);
   }
 }

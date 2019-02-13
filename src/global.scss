@@ -29,3 +29,40 @@
         }
     }
 }
+
+.language-settings {
+    ion-backdrop {
+		@media not all and (min-height: 600px) and (min-width: 768px) {
+			display: unset;
+		}
+	}
+    .modal-wrapper {
+        margin: 0px 26px;
+        height: 278px;
+        background-color: white;
+        border-radius: 5px;
+        .settings {
+            text-align: center;
+            .header {
+                padding: 9px 0px;
+                border-bottom: 1px solid #d8d2d2;
+                text-transform: uppercase;
+                font-size: 14px;
+                color: #afa3a3;
+            }
+            .list {
+                .preffered-language {
+                    color: #0bb8cc;
+                }
+                .language {
+                    padding: 9px 0px;
+                    font-size: 13px;
+                    border-bottom: 1px solid #fffcf6;
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+<!-- <ion-list>
+    <ion-list-header>
+      <ion-label>Items</ion-label>
+    </ion-list-header>
+    <ion-item lines="full">Item 1</ion-item>
+    <ion-item lines="full">Item 2</ion-item>
+    <ion-item lines="full">Item 3</ion-item>
+    <ion-item lines="full">Item 4</ion-item>
+    <ion-item lines="full">Item 5</ion-item>
+  </ion-list> -->
+
+<div class="settings">
+    <div class="header">Filter BY - Languages</div>
+    <div class="list">
+        <div [ngClass]="(prefferedLanguage === language) ? 'preffered-language' : ''" *ngFor="let language of languages" (click)="selectLanguage(language)" class="language">{{language}}</div>
+    </div>
+</div>
+lang
+{{config | json}}

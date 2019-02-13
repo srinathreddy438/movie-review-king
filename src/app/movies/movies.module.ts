@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
 import { IonicModule } from '@ionic/angular';
-
-import { MoviesPage } from './movies.page';
+import { MoviesPage, LanguageSettingsModel } from './movies.page';
 
 const routes: Routes = [
   {
@@ -21,6 +19,10 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [MoviesPage]
+  declarations: [
+    MoviesPage,
+    LanguageSettingsModel
+  ],
+  entryComponents: [LanguageSettingsModel]
 })
 export class MoviesPageModule {}

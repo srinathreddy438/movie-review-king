@@ -36,7 +36,6 @@ import { TrendingService } from './services/trending-service';
 // Pro.init('YOUR_APP_ID', {
 //   appVersion: 'APP_VERSION'
 // });
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

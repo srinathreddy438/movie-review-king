@@ -13,6 +13,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements DoCheck {
+  private resetBackButton: any;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -37,7 +38,7 @@ export class AppComponent implements DoCheck {
       icon: 'home'
     },
     {
-      title: 'Movies',
+      title: 'Now Showing Movies',
       url: '/movies',
       icon: 'film'
     },
