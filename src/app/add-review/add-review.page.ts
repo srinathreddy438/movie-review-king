@@ -35,6 +35,7 @@ export class AddReviewPage implements OnInit {
   routerId: String;
   overalRating: number;
   ratingExist: boolean;
+  category: string;
   constructor(
     private activatedRoute: ActivatedRoute,
     public movieService: MoviesService,
@@ -86,6 +87,7 @@ export class AddReviewPage implements OnInit {
     this.userName = this.accountsService && this.accountsService.getLoginInfo() && this.accountsService.getLoginInfo().userName;
     this.activatedRoute.paramMap.subscribe(
       params => {
+        this.category = params.get('category');
         const id = params.get('id');
         this.routerId = id;
         this.getMovieDetails(id);

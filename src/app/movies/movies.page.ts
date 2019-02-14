@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MoviesService } from '../services/movies-service';
 import { map } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AccountsService } from '../services/account-service';
 import { LoadingController } from '@ionic/angular';
 import { LoaderService } from '../shared/interceptor';
@@ -33,9 +33,12 @@ export class MoviesPage implements OnInit {
   limit: number;
   prefferedLanguage;
   showSearch;
+  category: string;
+  title: string;
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
   @ViewChild( Content ) pageTop: Content;
   constructor(
+    private activatedRoute: ActivatedRoute,
     public Service: MoviesService,
     private router: Router,
     public accountsService: AccountsService,
@@ -45,6 +48,18 @@ export class MoviesPage implements OnInit {
     }
 
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(
+      params => {
+        this.category = params.get('category');
+        if (this.category === 'playing') {
+          this.title = 'Now Showing Movies';
+        } else if (this.category === 'upcoming') {
+          this.title = 'Upcoming Movies';
+        } else if (this.category === 'previous') {
+          this.title = 'Previous Movies';
+        }
+      }
+    );
     if (!localStorage.prefferedLanguage) {
       localStorage.prefferedLanguage = 'All Languages';
     }
@@ -72,7 +87,7 @@ export class MoviesPage implements OnInit {
   }
 
   goToReviewPage(movie) {
-    this.router.navigate(['movies', movie._id]);
+    this.router.navigate(['movies', this.category, movie._id]);
   }
   updateMovieDetails(movie) {
     this.router.navigate(['update-movie', movie._id]);
@@ -130,10 +145,6 @@ export class MoviesPage implements OnInit {
       }
     });
     return await popover.present();
-  }
-
-  selectLanguage(language) {
-    alert('parent');
   }
 }
 

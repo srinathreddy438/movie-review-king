@@ -39,17 +39,17 @@ export class AppComponent implements DoCheck {
     },
     {
       title: 'Now Showing Movies',
-      url: '/movies',
+      url: '/movies/playing',
       icon: 'film'
     },
     {
       title: 'Upcoming Movies',
-      url: '/movies',
+      url: '/movies/upcoming',
       icon: 'md-radio'
     },
     {
       title: 'Previous Movies',
-      url: '/movies',
+      url: '/movies/previous',
       icon: 'play-circle'
     },
     {

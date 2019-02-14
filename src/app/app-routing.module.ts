@@ -5,8 +5,12 @@ import { OnlyLoggedInUsersGuard } from './guards/only-logged-in-users-guard';
 const routes: Routes = [
   { path: '', loadChildren: './home/home.module#HomePageModule', canActivate: [OnlyLoggedInUsersGuard]},
   { path: 'home-page', loadChildren: './home/home.module#HomePageModule', canActivate: [OnlyLoggedInUsersGuard]},
-  { path: 'movies', loadChildren: './movies/movies.module#MoviesPageModule', canActivate: [OnlyLoggedInUsersGuard]},
-  { path: 'movies/:id', loadChildren: './add-review/add-review.module#AddReviewPageModule', canActivate: [OnlyLoggedInUsersGuard]},
+  { path: 'movies/:category', loadChildren: './movies/movies.module#MoviesPageModule', canActivate: [OnlyLoggedInUsersGuard]},
+  {
+    path: 'movies/:category/:id',
+    loadChildren: './add-review/add-review.module#AddReviewPageModule',
+    canActivate: [OnlyLoggedInUsersGuard]
+  },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'add-movie', loadChildren: './add-movie/add-movie.module#AddMoviePageModule', canActivate: [OnlyLoggedInUsersGuard]},
   { path: 'update-movie/:id', loadChildren: './add-movie/add-movie.module#AddMoviePageModule', canActivate: [OnlyLoggedInUsersGuard]},

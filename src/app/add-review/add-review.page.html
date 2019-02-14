@@ -6,7 +6,7 @@
 </ion-header> -->
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-buttons slot="start" routerLink="/movies">
+    <ion-buttons slot="start" routerLink="/movies/{{category}}">
       <ion-icon name="arrow-back" class="back-icon"></ion-icon>
     </ion-buttons>
     <ion-title>
@@ -40,12 +40,14 @@
           <div>{{movie?.releasingDate | date: 'dd/MM/yyyy'}}</div>
         </div>
       </div>
-      <div class="section2">
+      <div [ngClass]="category !== 'upcoming' ? 'add-border' : ''" class="section2">
         <div>{{movie?.description}}</div>
       </div>
     </div>
-    <div *ngIf="!ratingList?.length" class="no-review" color="primary">
-      No Reviews added, Add your review
+    <div *ngIf="category !== 'upcoming'">
+      <div *ngIf="!ratingList?.length" class="no-review" color="primary">
+        No Reviews added, Add your review
+      </div>
     </div>
     <div class="rating-list">
       <div class="rating" *ngFor="let rating of ratingList">
@@ -69,7 +71,7 @@
     </div>
   </div>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="category !== 'upcoming'">
   <ion-toolbar *ngIf="!ratingExist" color="danger">
     <ion-title text-center (click)="presentPopover($event, '')">
       Rate The Movie

@@ -1,8 +1,9 @@
 <ion-header class="movies-header">
   <ion-toolbar color="secondary">
     <ion-buttons slot="start">
-      <ion-button routerLink="">
-        <ion-icon name="arrow-back" class="back-icon"></ion-icon>
+      <ion-button>
+        <!-- <ion-icon name="arrow-back" class="back-icon"></ion-icon> -->
+        <ion-menu-button></ion-menu-button>
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="primary">
@@ -14,7 +15,7 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      <div class="movies-title">Now Showing Movies</div>
+      <div class="movies-title">{{title}}</div>
       <div class="selcted-langualge">{{prefferedLanguage}}</div>
     </ion-title>
   </ion-toolbar>
