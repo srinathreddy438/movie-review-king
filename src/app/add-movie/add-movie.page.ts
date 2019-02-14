@@ -24,7 +24,16 @@ export class AddMoviePage implements OnInit {
 
   // movie: MovieModel;
   movie: any;
+  languages: Array<string>;
   constructor(private activatedRoute: ActivatedRoute, public movieService: MoviesService) {
+    this.languages = [
+      'Telugu',
+      'Hindi',
+      'English',
+      'Tamil',
+      'Malayalam',
+      'Kannada'
+    ];
     this.movie = new MovieModel();
   }
 

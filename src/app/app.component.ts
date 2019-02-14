@@ -43,6 +43,16 @@ export class AppComponent implements DoCheck {
       icon: 'film'
     },
     {
+      title: 'Upcoming Movies',
+      url: '/movies',
+      icon: 'md-radio'
+    },
+    {
+      title: 'Previous Movies',
+      url: '/movies',
+      icon: 'play-circle'
+    },
+    {
       title: 'Trending Videos',
       url: '/trending-videos',
       icon: 'trending-up'
