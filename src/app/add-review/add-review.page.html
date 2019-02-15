@@ -31,13 +31,31 @@
         </div>
       </div>
       <div class="section1">
-        <div>
-          <div class="title">{{movie.title}}</div>
-          <div>{{movie.language}}</div>
+        <div class="add-flex justify-content-between">
+          <div>
+            <div class="title">{{movie.title}}</div>
+            <div class="margin-top-5px">{{movie.language}}</div>
+          </div>
+          <div>
+            <div>{{movie?.certificate}}</div>
+            <div class="margin-top-5px">{{movie?.releasingDate | date: 'dd/MM/yyyy'}}</div>
+          </div>
         </div>
-        <div>
-          <div>{{movie?.certificate}}</div>
-          <div>{{movie?.releasingDate | date: 'dd/MM/yyyy'}}</div>
+        <div class="add-flex margin-top-10px" *ngIf="movie?.director">
+          <div class="options-title-width">Director </div>
+          <div class="options-tilte-desc">{{movie?.director}}</div>
+        </div>
+        <div class="add-flex margin-top-10px" *ngIf="movie?.producer">
+          <div class="options-title-width">Producer </div>
+          <div class="options-tilte-desc">{{movie?.producer}}</div>
+        </div>
+        <div class="add-flex margin-top-10px" *ngIf="movie?.musicDirector">
+          <div class="options-title-width">Music </div>
+          <div class="options-tilte-desc">{{movie?.musicDirector}}</div>
+        </div>
+        <div class="add-flex margin-top-10px" *ngIf="movie?.cast">
+          <div class="options-title-width">Cast </div>
+          <div class="options-tilte-desc">{{movie?.cast}}</div>
         </div>
       </div>
       <div [ngClass]="category !== 'upcoming' ? 'add-border' : ''" class="section2">
@@ -62,7 +80,8 @@
           <div class="date">{{rating?.ratingGivenDate | date: 'dd/MM/yyyy'}}</div>
           <div class="rating-stat-list">
             <div *ngFor="let rate of ratingStarsList; let i = index;">
-              <ion-icon [ngClass]="((rate?.rating) <= (rating?.rating)) ? 'selected' : ''" class="rating-icon" name="star"></ion-icon>
+              <ion-icon [ngClass]="((rate?.rating) <= (rating?.rating)) ? 'selected' : ''" class="rating-icon"
+                name="star"></ion-icon>
             </div>
           </div>
           <div>{{rating?.description}}</div>

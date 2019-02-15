@@ -48,6 +48,23 @@
       <ion-input [(ngModel)]="movie.video"></ion-input>
     </ion-item>
 
+    <ion-item>
+      <ion-label position='stacked' color="secondary">Director</ion-label>
+      <ion-input [(ngModel)]="movie.director"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position='stacked' color="secondary">Producer</ion-label>
+      <ion-input [(ngModel)]="movie.producer"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position='stacked' color="secondary">Music Director</ion-label>
+      <ion-input [(ngModel)]="movie.musicDirector"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position='stacked' color="secondary">Cast</ion-label>
+      <ion-input [(ngModel)]="movie.cast"></ion-input>
+    </ion-item>
+
   </ion-list>
   <ion-button color="secondary" expand="block" (click)="save()">Save</ion-button>
 </ion-content>

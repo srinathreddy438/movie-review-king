@@ -12,6 +12,24 @@
 
     .detail-section {
         padding: 20px;
+        .add-flex {
+            display: flex;
+        }
+        .justify-content-between {
+            justify-content: space-between;
+        }
+        .margin-top-10px {
+            margin-top: 10px;
+        }
+        .margin-top-5px {
+            margin-top: 5px;
+        }
+        .options-title-width {
+            width: 80px;
+        }
+        .options-tilte-desc {
+            width: calc(100% - 80px);
+        }
         .rating-list {
             .rating {
                 border-bottom: 1px solid lightgray;
@@ -60,8 +78,6 @@
                 }
             }
             .section1 {
-                display: flex;
-                justify-content: space-between;
                 .title {
                     color: black;
                     font-weight: bold;

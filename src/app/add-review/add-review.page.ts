@@ -16,7 +16,11 @@ class MovieModel {
     public releasingDate?: Date,
     public certificate?: String,
     public image?: String,
-    public video?: String
+    public video?: String,
+    public director?: String,
+    public producer?: String,
+    public musicDirector?: String,
+    public cast?: String,
   ) {
   }
 }
