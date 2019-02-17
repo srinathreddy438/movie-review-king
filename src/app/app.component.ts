@@ -32,11 +32,11 @@ export class AppComponent implements DoCheck {
     this.initializeApp();
   }
   public appPages = [
-    {
-      title: 'Home',
-      url: '/home-page',
-      icon: 'home'
-    },
+    // {
+    //   title: 'Home',
+    //   url: '/home-page',
+    //   icon: 'home'
+    // },
     {
       title: 'Now Showing Movies',
       url: '/movies/playing',

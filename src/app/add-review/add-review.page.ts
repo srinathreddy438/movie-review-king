@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { ReviewFormPagePopOver } from './review-form/review-form.page';
 import { MoviesService } from '../services/movies-service';
@@ -40,7 +40,9 @@ export class AddReviewPage implements OnInit {
   overalRating: number;
   ratingExist: boolean;
   category: string;
+  prevPageScroll: any;
   constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     public movieService: MoviesService,
     public accountsService: AccountsService,
@@ -93,6 +95,7 @@ export class AddReviewPage implements OnInit {
       params => {
         this.category = params.get('category');
         const id = params.get('id');
+        this.prevPageScroll = params.get('scrollPos');
         this.routerId = id;
         this.getMovieDetails(id);
         this.getReviewList(id);
@@ -102,6 +105,10 @@ export class AddReviewPage implements OnInit {
 
   playVideo(url) {
     this.youtube.openVideo(url);
+  }
+
+  goBackToMoviesPage() {
+    this.router.navigate(['movies', this.category, {scrollPos: this.prevPageScroll}]);
   }
 
   async presentPopover(ev: any, existRatingObj) {

@@ -6,7 +6,7 @@
 </ion-header> -->
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-buttons slot="start" routerLink="/movies/{{category}}">
+    <ion-buttons slot="start" (click)="goBackToMoviesPage()">
       <ion-icon name="arrow-back" class="back-icon"></ion-icon>
     </ion-buttons>
     <ion-title>

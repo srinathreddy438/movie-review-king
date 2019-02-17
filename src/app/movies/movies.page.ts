@@ -40,7 +40,8 @@ export class MoviesPage implements OnInit {
   category: string;
   title: string;
   @ViewChild(InfiniteScroll) infiniteScroll: InfiniteScroll;
-  @ViewChild( Content ) pageTop: Content;
+  @ViewChild(Content) pageTop: Content;
+  prevScrollPosition: any;
   constructor(
     private activatedRoute: ActivatedRoute,
     public Service: MoviesService,
@@ -49,9 +50,10 @@ export class MoviesPage implements OnInit {
     public loadingController: LoadingController,
     public loaderService: LoaderService,
     public modalController: ModalController) {
-    }
+  }
 
   ngOnInit() {
+    this.prevScrollPosition = 0;
     this.activatedRoute.paramMap.subscribe(
       params => {
         this.category = params.get('category');
@@ -62,6 +64,9 @@ export class MoviesPage implements OnInit {
         } else if (this.category === 'previous') {
           this.title = 'Previous Movies';
         }
+        const getOldScroll = Number(params.get('scrollPos')) || 0;
+        this.pageTop.scrollByPoint(0, getOldScroll, 3000).then(() => {
+        });
       }
     );
     if (!localStorage.prefferedLanguage) {
@@ -91,7 +96,7 @@ export class MoviesPage implements OnInit {
   }
 
   goToReviewPage(movie) {
-    this.router.navigate(['movies', this.category, movie._id]);
+    this.router.navigate(['movies', this.category, movie._id, { scrollPos: this.prevScrollPosition }]);
   }
   updateMovieDetails(movie) {
     this.router.navigate(['update-movie', movie._id]);
@@ -133,7 +138,7 @@ export class MoviesPage implements OnInit {
       animated: true,
       // showBackdrop: true,
       // backdropDismiss: true,
-      componentProps: { prefferedLanguage: this.prefferedLanguage}
+      componentProps: { prefferedLanguage: this.prefferedLanguage }
     }
     );
     popover.onDidDismiss().then(data => {
@@ -149,6 +154,12 @@ export class MoviesPage implements OnInit {
       }
     });
     return await popover.present();
+  }
+
+  scroll(ev) {
+    if (ev && ev.detail) {
+      this.prevScrollPosition = ev.detail.scrollTop;
+    }
   }
 }
 
