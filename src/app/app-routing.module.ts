@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { OnlyLoggedInUsersGuard } from './guards/only-logged-in-users-guard';
 
 const routes: Routes = [
-  // { path: '', loadChildren: './home/home.module#HomePageModule', canActivate: [OnlyLoggedInUsersGuard]},
-  // { path: 'home-page', loadChildren: './home/home.module#HomePageModule', canActivate: [OnlyLoggedInUsersGuard]},
+  { path: '', redirectTo: 'home-page', pathMatch: 'full'},
+  { path: 'home-page', loadChildren: './home/home.module#HomePageModule', canActivate: [OnlyLoggedInUsersGuard]},
   { path: 'movies/:category', loadChildren: './movies/movies.module#MoviesPageModule', canActivate: [OnlyLoggedInUsersGuard]},
   {
     path: 'movies/:category/:id',

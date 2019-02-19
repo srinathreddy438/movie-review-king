@@ -1,5 +1,5 @@
-import { Component, DoCheck, ChangeDetectorRef } from '@angular/core';
-import { Platform, ActionSheetController } from '@ionic/angular';
+import { Component, DoCheck, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Platform, ActionSheetController, Nav } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AccountsService } from './services/account-service';
@@ -7,14 +7,16 @@ import { LoaderService } from './shared/interceptor';
 import { LoadingController } from '@ionic/angular';
 import { AppRate } from '@ionic-native/app-rate/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements DoCheck {
-  private resetBackButton: any;
+  @ViewChild(Nav) nav: Nav;
   constructor(
+    public toastController: ToastController,
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
@@ -113,6 +115,19 @@ export class AppComponent implements DoCheck {
         },
         simpleMode: true
       };
+
+      document.addEventListener('backbutton', () => {
+        if (location.href.indexOf('home-page') !== -1) {
+          // const msg = 'Press again to exit app';
+          // this.presentToastWithOptions(msg);
+          interface NavigatorCordova extends Navigator {
+            app: {
+              exitApp: () => any;
+            };
+          }
+          (navigator as NavigatorCordova).app.exitApp();
+        }
+      });
     });
 
     if (this.accountsService && this.accountsService.getLoginInfo() && this.accountsService.getLoginInfo().userName === 'srinath440') {
@@ -124,6 +139,15 @@ export class AppComponent implements DoCheck {
     const loading = await this.loadingController.create({
     });
     return await loading.present();
+  }
+
+  async presentToastWithOptions(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      position: 'bottom',
+      duration: 2000
+    });
+    toast.present();
   }
 
   public ngDoCheck(): void {
