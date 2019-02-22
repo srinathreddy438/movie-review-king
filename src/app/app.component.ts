@@ -8,6 +8,7 @@ import { LoadingController } from '@ionic/angular';
 import { AppRate } from '@ionic-native/app-rate/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ToastController } from '@ionic/angular';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -15,7 +16,13 @@ import { ToastController } from '@ionic/angular';
 })
 export class AppComponent implements DoCheck {
   @ViewChild(Nav) nav: Nav;
+  appName: string;
+  packageName: string;
+  versionCode: string | number;
+  versionNumber: string;
+
   constructor(
+    private appVersion: AppVersion,
     public toastController: ToastController,
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -127,6 +134,19 @@ export class AppComponent implements DoCheck {
           }
           (navigator as NavigatorCordova).app.exitApp();
         }
+      });
+      // https://www.freakyjolly.com/ionic-4-get-app-version-name-version-code-and-package-name-using-ionic-native-plugin/
+      this.appVersion.getAppName().then(value => {
+        this.appName = value;
+      });
+      this.appVersion.getPackageName().then(value => {
+        this.packageName = value;
+      });
+      this.appVersion.getVersionCode().then(value => {
+        this.versionCode = value;
+      });
+      this.appVersion.getVersionNumber().then(value => {
+        this.versionNumber = value;
       });
     });
 

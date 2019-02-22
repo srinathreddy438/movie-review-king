@@ -13,7 +13,8 @@ import { AppRate } from '@ionic-native/app-rate/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 // youtube video plugin
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player/ngx';
-
+// app version
+import { AppVersion } from '@ionic-native/app-version/ngx';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -54,6 +55,7 @@ import { TrendingService } from './services/trending-service';
     AppRate,
     SocialSharing,
     YoutubeVideoPlayer,
+    AppVersion,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
