@@ -8,7 +8,6 @@ import { LoadingController } from '@ionic/angular';
 import { AppRate } from '@ionic-native/app-rate/ngx';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ToastController } from '@ionic/angular';
-import { AppVersion } from '@ionic-native/app-version/ngx';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -16,13 +15,12 @@ import { AppVersion } from '@ionic-native/app-version/ngx';
 })
 export class AppComponent implements DoCheck {
   @ViewChild(Nav) nav: Nav;
-  appName: string;
+  /*appName: string;
   packageName: string;
   versionCode: string | number;
-  versionNumber: string;
+  versionNumber: string;*/
 
   constructor(
-    private appVersion: AppVersion,
     public toastController: ToastController,
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -72,6 +70,11 @@ export class AppComponent implements DoCheck {
       icon: 'images'
     },
     {
+      title: 'App Update',
+      url: '/app-update',
+      icon: 'cloud-done'
+    },
+    {
       title: 'Login',
       url: '/login',
       icon: 'person'
@@ -99,29 +102,6 @@ export class AppComponent implements DoCheck {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.appRate.preferences = {
-        storeAppURL: {
-          ios: '<app_id>',
-          android: 'market://details?id=com.svappzone.reviewking',
-          windows: 'ms-windows-store://review/?ProductId=<store_id>'
-        },
-        customLocale: {
-          title: 'Do You Enjoy?',
-          message: 'Please Rate Us',
-          cancelButtonLabel: 'No Thanks',
-          laterButtonLabel: 'Remind me later',
-          rateButtonLabel: 'Rate It Now',
-        },
-        callbacks: {
-          onRateDialogShow: function (callback) {
-            console.log('dfcsd');
-          },
-          onButtonClicked: function (buttonIndex) {
-            console.log('Selected Index is ' + buttonIndex);
-          }
-        },
-        simpleMode: true
-      };
 
       document.addEventListener('backbutton', () => {
         if (location.href.indexOf('home-page') !== -1) {
@@ -136,18 +116,30 @@ export class AppComponent implements DoCheck {
         }
       });
       // https://www.freakyjolly.com/ionic-4-get-app-version-name-version-code-and-package-name-using-ionic-native-plugin/
-      this.appVersion.getAppName().then(value => {
+      /*this.appVersion.getAppName().then(value => {
         this.appName = value;
+      }).catch(err => {
       });
       this.appVersion.getPackageName().then(value => {
         this.packageName = value;
+      }).catch(err => {
       });
       this.appVersion.getVersionCode().then(value => {
         this.versionCode = value;
+        if (this.versionCode !== 3) {
+          const updateUrl = 'https://moviesreviewapp.herokuapp.com/update/update.xml';
+          this.appUpdate.checkAppUpdate(updateUrl).then(() => {
+            alert('Update available');
+          }).catch(err => {
+          });
+        }
+      }).catch(err => {
       });
       this.appVersion.getVersionNumber().then(value => {
         this.versionNumber = value;
-      });
+      }).catch(err => {
+      });*/
+
     });
 
     if (this.accountsService && this.accountsService.getLoginInfo() && this.accountsService.getLoginInfo().userName === 'srinath440') {
@@ -175,6 +167,29 @@ export class AppComponent implements DoCheck {
   }
 
   rateApp() {
+    this.appRate.preferences = {
+      storeAppURL: {
+        ios: '<app_id>',
+        android: 'market://details?id=com.svappzone.reviewking',
+        windows: 'ms-windows-store://review/?ProductId=<store_id>'
+      },
+      customLocale: {
+        title: 'Do You Enjoy?',
+        message: 'Please Rate Us',
+        cancelButtonLabel: 'No Thanks',
+        laterButtonLabel: 'Remind me later',
+        rateButtonLabel: 'Rate It Now',
+      },
+      callbacks: {
+        onRateDialogShow: function (callback) {
+          console.log('dfcsd');
+        },
+        onButtonClicked: function (buttonIndex) {
+          console.log('Selected Index is ' + buttonIndex);
+        }
+      },
+      simpleMode: true
+    };
     this.appRate.promptForRating(true);
   }
 

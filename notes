@@ -11,6 +11,9 @@ ionic generate service api/news             //it will create service
 npm install -g cordova                      
 ionic cordova build android                 //build application
 
+//it will give all coredova plugins installed
+cordova plugin ls
+
 after building complete it will create one platforms folder, it will have androind or ios folders
 this android folder we can open in android studio and we can run then it will crete an app in mobile 
 

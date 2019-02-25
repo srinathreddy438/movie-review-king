@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start" routerLink="/movies/playing">
+      <ion-icon name="arrow-back" class="back-icon"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      Update App
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div>Current Version {{versionNumber}}</div>
+  <div *ngIf="versionNumber !== versionNumberFromDB">
+    <div>New Version available</div>
+    <ion-button color="secondary" expand="block" (click)="updateApp()">Update App</ion-button>
+  </div>
+</ion-content>

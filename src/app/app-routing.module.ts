@@ -27,7 +27,8 @@ const routes: Routes = [
   { path: 'create-photos', loadChildren: './photos/create-photos/create-photos.module#CreatePhotosPageModule' },
   { path: 'update-photos/:id', loadChildren: './photos/create-photos/create-photos.module#CreatePhotosPageModule' },
   // { path: '**', loadChildren: './home/home.module#HomePageModule' },
-  { path: '**', redirectTo: 'movies/playing', pathMatch: 'full' },
+  { path: 'app-update', loadChildren: './app-update/app-update.module#AppUpdatePageModule' },
+  { path: '**', redirectTo: 'movies/playing', pathMatch: 'full' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
