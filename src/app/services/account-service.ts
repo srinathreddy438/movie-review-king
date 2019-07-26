@@ -24,12 +24,16 @@ export class AccountsService {
     }
 
     createAccount(account) {
+        alert(account.userName);
         return new Promise(resolve => {
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');
             this.httpCall.post(this.url, JSON.stringify(account), httpOptions)
                 .subscribe(res => {
+                    alert(res);
                     resolve(res);
+                }, err => {
+                    alert(err.json);
                 });
         });
     }

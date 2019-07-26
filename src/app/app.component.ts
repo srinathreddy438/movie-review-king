@@ -103,7 +103,7 @@ export class AppComponent implements DoCheck {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      document.addEventListener('backbutton', () => {
+      /*document.addEventListener('backbutton', () => {
         if (location.href.indexOf('home-page') !== -1) {
           // const msg = 'Press again to exit app';
           // this.presentToastWithOptions(msg);
@@ -114,7 +114,7 @@ export class AppComponent implements DoCheck {
           }
           (navigator as NavigatorCordova).app.exitApp();
         }
-      });
+      });*/
       // https://www.freakyjolly.com/ionic-4-get-app-version-name-version-code-and-package-name-using-ionic-native-plugin/
       /*this.appVersion.getAppName().then(value => {
         this.appName = value;

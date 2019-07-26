@@ -49,7 +49,9 @@ export class LoginPage implements OnInit {
             }
           });
         } else {
+          alert(this.account.userName);
           this.accountsService.createAccount(this.account).then((userObj: any) => {
+            alert('success');
             this.account.userName = this.account.userName.trim();
             if (userObj === 'accountExisted') {
               const msg = 'username exists';
@@ -59,6 +61,10 @@ export class LoginPage implements OnInit {
               this.account = userObj;
               this.router.navigate(['']);
             }
+          }, (err) => {
+            alert(err);
+          }).catch((err) => {
+            alert(err);
           });
         }
       } else {
